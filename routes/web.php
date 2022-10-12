@@ -15,9 +15,11 @@ use App\Http\Controllers\RecordingController;
 use App\Http\Controllers\FormController;
 
 
-Route::get('/', function () {
-    return view('home');
-});
+// Route::get('/', function () {
+//     return redirect('/home');
+// });
+
+Route::get('/', [LoginController::class, 'home'])->name('home');
 
 // LOGIN & LOGOUT
 Route::get('/login', [LoginController::class, 'halamanlogin'])->name('login');

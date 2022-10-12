@@ -17,7 +17,7 @@ class CreatePopulasiTable extends Migration
             $table->id();
             $table->foreignId('id_kandang');
             $table->string('kd_ayam')->unique();
-            $table->integer('tgl_tetas');
+            $table->date('tgl_tetas');
             $table->string('status');
             $table->timestamps();
 

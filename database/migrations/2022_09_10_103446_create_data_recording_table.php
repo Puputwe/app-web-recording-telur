@@ -20,7 +20,7 @@ class CreateDataRecordingTable extends Migration
             $table->foreignId('id_pakan');
             $table->date('tanggal');
             $table->integer('jml_telur');
-            $table->integer('berat_telur');
+            $table->decimal('berat_telur');
             $table->decimal('jml_pakan');
             $table->integer('ayam_hidup');
             $table->integer('ayam_afkir');
