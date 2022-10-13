@@ -65,7 +65,7 @@
                                          placeholder="*anda dapat memberikan catatan berupa kondisi ayam saat ini"></textarea>
                                     </div>
                                     <div class="form-group col-lg-12">
-                                        <a href="{{ route('qrScanner') }}" class="btn btn-secondary btn-sm"><i class="fa fa-undo"></i> Back </a>
+                                        <a href="{{ route('produksiTelur') }}" class="btn btn-secondary btn-sm"><i class="fa fa-undo"></i> Back </a>
                                         <button type="submit" class="btn btn-primary btn-sm">Submit</button>
                                     </div>
                                 </div>
