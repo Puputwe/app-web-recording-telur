@@ -4,6 +4,15 @@
 * Author: BootstrapMade.com
 * License: https://bootstrapmade.com/license/
 */
+window.onload = () => {
+  'use strict';
+
+  if ('serviceWorker' in navigator) {
+    navigator.serviceWorker
+             .register('./sw.js');
+  }
+}
+
 (function() {
   "use strict";
 

@@ -17,6 +17,11 @@
   <!-- Toaster -->
  <link rel="stylesheet" href="sweetalert2.min.css">
 
+  <!-- PWA  -->
+  <meta name="theme-color" content="#6777ef"/>
+  <link rel="apple-touch-icon" href="{{ asset('logo.png') }}">
+  <link rel="manifest" href="{{ asset('/manifest.json') }}">
+
  @stack('custom-css')
 
  <!-- Theme style -->

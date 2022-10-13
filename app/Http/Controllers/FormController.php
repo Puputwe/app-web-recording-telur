@@ -74,11 +74,11 @@ class FormController extends Controller
 
     public function formProduksi($id)
     {
-        $enkripsi= Crypt::decrypt($id);
+       // $enkripsi= Crypt::decrypt($id);
         
-        $populasi = Populasi::where('id', $enkripsi)->first();
+        $populasi = Populasi::where('id', $id)->first();
 
-        $total_telur = Produksi::where('id_populasi', $enkripsi)->sum('jml_telur');
+        $total_telur = Produksi::where('id_populasi', $id)->sum('jml_telur');
         if($populasi){
             return view('user.recording.add_produksi', compact('populasi', 'total_telur'));  
           }else{

@@ -265,7 +265,7 @@
                           <th>Kode Ayam : {{ $detail->kd_ayam}}</th>
                       </tr>
                       <tr>
-                          <th class="text-center" colspan="2">{!! QrCode::size(150)->generate(Crypt::encrypt($detail->id)); !!}</th>
+                          <th class="text-center" colspan="2">{!! QrCode::size(150)->generate($detail->id); !!}</th>
                       </tr>
                     </table>
                         </form>

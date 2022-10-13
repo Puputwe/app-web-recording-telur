@@ -15,6 +15,10 @@
   <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/bs4/dt-1.12.1/datatables.min.css"/>
    <!-- Toaster -->
   <link rel="stylesheet" href="sweetalert2.min.css">
+   <!-- PWA  -->
+   <meta name="theme-color" content="#6777ef"/>
+   <link rel="apple-touch-icon" href="{{ asset('logo.png') }}">
+   <link rel="manifest" href="{{ asset('/manifest.json') }}">
 
   @stack('custom-css')
 

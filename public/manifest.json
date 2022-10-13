@@ -1,13 +1,38 @@
 {
     "name": "Recording Telur Apps",
     "short_name": "KWT Apps",
-    "start_url": "/index.php",
-    "background_color": "#6777ef",
+    "start_url": "/",
+    "background_color": "white",
     "description": "Recording Telur Apps",
     "display": "fullscreen",
-    "theme_color": "#6777ef",
+    "theme_color": "white",
     "icons": [
         {
+            "src": "logo.png",
+            "sizes": "512x512",
+            "type": "image/png",
+            "purpose": "any maskable"
+        }, {
+            "src": "logo.png",
+            "sizes": "512x512",
+            "type": "image/png",
+            "purpose": "any maskable"
+        },{
+            "src": "logo.png",
+            "sizes": "512x512",
+            "type": "image/png",
+            "purpose": "any maskable"
+        },{
+            "src": "logo.png",
+            "sizes": "512x512",
+            "type": "image/png",
+            "purpose": "any maskable"
+        },{
+            "src": "logo.png",
+            "sizes": "512x512",
+            "type": "image/png",
+            "purpose": "any maskable"
+        },{
             "src": "logo.png",
             "sizes": "512x512",
             "type": "image/png",

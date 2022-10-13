@@ -86,7 +86,11 @@
                           <button type="submit" class="btn btn-primary" style="margin-right: 4px; margin-left: 4px;"><i class="fa fa-search"></i> Cari</button>
                       </div>
                       <div class="col-lg-0.5">
-                        <a href="/scan/produksi" class="btn btn-danger" style="float: right;">
+                        {{-- <a href="/scan/produksi" class="btn btn-danger" style="float: right;">
+                          <i class="fa fa-qrcode"></i>  
+                            Scan QR
+                        </a> --}}
+			            <a href="https://puputwe.github.io/qr-scanner.github.io/" class="btn btn-danger" style="float: right;">
                           <i class="fa fa-qrcode"></i>  
                             Scan QR
                         </a>

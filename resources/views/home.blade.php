@@ -27,9 +27,8 @@
   <!-- Template Main CSS File -->
   <link href="{{ asset('assets/css/style.css') }}" rel="stylesheet">
 
-  {{-- PWA --}}
   <!-- PWA  -->
-    <meta name="theme-color" content="#6777ef"/>
+    <meta name="theme-color" content="white"/>
     <link rel="apple-touch-icon" href="{{ asset('logo.png') }}">
     <link rel="manifest" href="{{ asset('/manifest.json') }}">
 </head>

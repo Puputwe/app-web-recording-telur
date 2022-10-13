@@ -28,4 +28,8 @@ class Populasi extends Model
     public function produksi(){
         return $this->hasMany(Produksi::class);
     }
+
+    public function recording(){
+        return $this->hasMany(Recording::class);
+    }
 }

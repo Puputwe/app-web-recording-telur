@@ -259,9 +259,7 @@ class RecordingController extends Controller
 
     public function grafik(Request $request)
     {
-        $populasi = Produksi::join('populasi', 'populasi.id', '=', 'produksi.id_populasi')
-                    ->select('produksi.*', 'populasi.kd_ayam')
-                    ->get();
+        
         $kandang = Kandang::where('status', '=', 'aktif')->get();
         
         $id_kandang = $request->id_kandang;
@@ -286,11 +284,11 @@ class RecordingController extends Controller
             ->where('id_kandang', 'LIKE', '%'.$id_kandang.'%')
             ->pluck('kd_ayam');
 
-            $telur = produksi::select(DB::raw("CAST(SUM(jml_telur) as int) as telur"))
+            $telur = Produksi::select(DB::raw("CAST(SUM(jml_telur) as int) as telur"))
             ->GroupBy(DB::raw("id_populasi", "asc"))
             ->where('id_kandang', 'LIKE', '%'.$id_kandang.'%')
             ->pluck('telur');
 
-        return view('admin.recording.grafik', compact('populasi', 'ayam', 'kandang', 'telur', 'standart_hd', 'standart_fcr', 'bulan', 'get_kandang', 'id_kandang'));
+        return view('admin.recording.grafik', compact( 'ayam', 'kandang', 'telur', 'standart_hd', 'standart_fcr', 'bulan', 'get_kandang', 'id_kandang'));
     }
 }

@@ -35,6 +35,9 @@ class Recording extends Model
     public function kandang(){
         return $this->belongsTo(Kandang::class);
     }
+    public function populasi(){
+        return $this->belongsTo(Populasi::class);
+    }
     public function pakan(){
         return $this->belongsTo(Pakan::class);
     }
