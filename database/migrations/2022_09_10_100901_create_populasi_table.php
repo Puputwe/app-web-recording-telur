@@ -21,7 +21,7 @@ class CreatePopulasiTable extends Migration
             $table->string('status');
             $table->timestamps();
 
-            $table->foreign('id_kandang')->references('id')->on('kandang');
+            $table->foreign('id_kandang')->references('id')->on('kandang')->onDelete('cascade');
         });
     }
 

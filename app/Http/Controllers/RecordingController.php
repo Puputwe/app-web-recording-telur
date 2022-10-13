@@ -163,7 +163,7 @@ class RecordingController extends Controller
                        ->join('pakan', 'pakan.id', '=', 'data_recording.id_pakan')
                        ->join('users', 'pakan.id', '=', 'data_recording.id_pakan')
                        ->select('data_recording.*', 'kandang.kd_kandang', 'pakan.nama', 'pakan.jenis', 'users.name')
-                       ->where('id_kandang', 'LIKE', '%'.$request->id_kandang.'%')
+                       ->where('id_kandang', 'LIKE', '%'.$id_kandang.'%')
                        ->get();
          }
          if( $request->fromDate && $request->toDate ){
@@ -181,7 +181,7 @@ class RecordingController extends Controller
                        ->join('pakan', 'pakan.id', '=', 'data_recording.id_pakan')
                        ->join('users', 'pakan.id', '=', 'data_recording.id_pakan')
                        ->select('data_recording.*', 'kandang.kd_kandang', 'pakan.nama', 'pakan.jenis', 'users.name')
-                       ->where('id_kandang', 'LIKE', '%'.$request->id_kandang.'%')
+                       ->where('id_kandang', 'LIKE', '%'.$id_kandang.'%')
                        ->where('tanggal', '>=', $request->fromDate)
                        ->where('tanggal', '<=', $request->toDate)
                        ->get();

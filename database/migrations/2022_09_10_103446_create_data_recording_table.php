@@ -29,9 +29,9 @@ class CreateDataRecordingTable extends Migration
             $table->decimal('fcr');
             $table->timestamps();
 
-            $table->foreign('id_users')->references('id')->on('users');
-            $table->foreign('id_kandang')->references('id')->on('kandang');
-            $table->foreign('id_pakan')->references('id')->on('pakan');
+            $table->foreign('id_users')->references('id')->on('users')->onDelete('cascade');
+            $table->foreign('id_kandang')->references('id')->on('kandang')->onDelete('cascade');
+            $table->foreign('id_pakan')->references('id')->on('pakan')->onDelete('cascade');
         });
     }
 

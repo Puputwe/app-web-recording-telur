@@ -20,7 +20,7 @@ class CreatePakanMasukTable extends Migration
             $table->date('tgl_masuk');
             $table->timestamps();
 
-            $table->foreign('id_pakan')->references('id')->on('pakan');
+            $table->foreign('id_pakan')->references('id')->on('pakan')->onDelete('cascade');
         });
     }
 
