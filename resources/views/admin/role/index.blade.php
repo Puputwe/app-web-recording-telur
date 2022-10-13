@@ -17,6 +17,7 @@
                     </button>
                  </div>
                 <div class="card-body">   
+                <div class="table-responsive">
                 <table id="role-datatable" class="table table-striped table-bordered" style="width:100%">
                     <thead>
                         <tr>
@@ -43,6 +44,8 @@
                             @endforeach
                     </tbody>
                 </table>
+              </div>
+              </div>
 
                 {{-- Modal Tambah Data --}}
                 <div class="modal fade" id="addModalrole" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">

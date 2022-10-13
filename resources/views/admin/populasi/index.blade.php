@@ -16,7 +16,8 @@
                       Data
                     </button>
                  </div>
-                <div class="card-body">   
+                <div class="card-body"> 
+                <div class="table-responsive">  
                 <table id="populasi-datatable" class="table table-striped table-bordered" style="width:100%">
                     <thead>
                         <tr>
@@ -58,6 +59,7 @@
                             @endforeach
                     </tbody>
                 </table>
+                </div>
 
                 {{-- Modal Tambah Populasi --}}
                 <div class="modal fade" id="addModalpopulasi" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">

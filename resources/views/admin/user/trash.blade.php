@@ -14,6 +14,7 @@
                             <a href="/user/delete_all" class="btn btn-danger btn-sm"><i class="fa fa-trash"></i> Hapus Semua</a>
                     </div>
                     <div class="card-body">
+                        <div class="table-responsive">
                         <table id="user-datatable" class="table table-striped table-bordered" style="width:100%">
                             <thead>
                                 <tr>
@@ -43,14 +44,20 @@
                                 @endforeach
                             </tbody>
                         </table>
-                    @include('sweetalert::alert')
-                    @endsection
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+@include('sweetalert::alert')
+@endsection
 
-                    @section('footer')
-                        <script>
-                            $(document).ready(function() {
-                                $('#user-datatable').DataTable();
-                            });
-                        </script>
+@section('footer')
+<script>
+    $(document).ready(function() {
+        $('#user-datatable').DataTable();
+    });
+</script>
 
-                    @endsection
+@endsection

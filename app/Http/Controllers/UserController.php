@@ -75,7 +75,7 @@ class UserController extends Controller
             ]);
         }
 
-        return redirect('/user')->with('success', 'Data berhasil diubah!');
+        return redirect('/user')->with('success', 'Status berhasil diubah!');
     }
 
     public function trash()

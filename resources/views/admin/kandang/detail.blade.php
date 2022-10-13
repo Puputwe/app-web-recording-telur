@@ -16,6 +16,7 @@
                   </a>
                </div>
               <div class="card-body">
+                <div class="table-responsive">
                 <h5>Informasi Kandang</h5>
                @foreach ($info as $d )
                <table class="table table-borderless">
@@ -57,6 +58,7 @@
               </tr>
             </table>
                @endforeach
+                </div>
               </div>
           </div>
       </div>
@@ -85,6 +87,7 @@
                    @endforeach
                  </div>
                 <div class="card-body">
+                <div class="table-responsive">
                 <table id="populasi-datatable" class="table table-striped table-bordered" style="width:100%">
                     <thead>
                         <tr>
@@ -126,6 +129,7 @@
                             @endforeach
                     </tbody>
                 </table>
+                </div>
 
                  {{-- Modal Tambah Populasi --}}
                  <div class="modal fade" id="addModalpopulasi" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">

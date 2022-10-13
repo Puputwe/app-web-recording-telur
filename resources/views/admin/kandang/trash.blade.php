@@ -13,7 +13,8 @@
                     <h3 class="card-title">
                         <a href="/kandang/delete_all" class="btn btn-danger btn-sm"><i class="fa fa-trash"></i> Hapus Semua</a>
                  </div>
-                <div class="card-body">   
+                <div class="card-body">
+                <div class="table-responsive">   
                 <table id="kandang-datatable" class="table table-striped table-bordered" style="width:100%">
                     <thead>
                         <tr>
@@ -40,6 +41,12 @@
                             @endforeach
                     </tbody>
                 </table>
+              </div>
+            </div>
+         </div>
+      </div>
+    </div>
+</div>
 @include('sweetalert::alert')
 @endsection
 

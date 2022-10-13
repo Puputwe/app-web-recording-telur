@@ -16,14 +16,15 @@
                             </button>
                     </div>
                     <div class="card-body">
+                        <div class="table-responsive">
                         <table id="user-datatable" class="table table-striped table-bordered" style="width:100%">
                             <thead>
                                 <tr>
                                     <th>No</th>
                                     <th>Nama</th>
                                     <th>Email</th>
-                                    <th>Role</th>
-                                    <th>Status</th>
+                                    <th class="text text-center">Role</th>
+                                    <th class="text text-center">Status</th>
                                     <th>Aksi</th>
                                 </tr>
                             </thead>
@@ -34,19 +35,19 @@
                                         <td>{{ $no++ }}</td>
                                         <td>{{ $item->name }}</td>
                                         <td>{{ $item->email }}</td>
-                                        <td>{{ $item->role }}</td>
-                                        <td><span class="badge {{ ($item->status == 'aktif') ? 'bg-success' : 'bg-danger' }}">{{ ($item->status ==
-                                            'aktif') ? 'aktif' : 'non-aktif' }}</span></td>
+                                        <td class="text text-center">{{ $item->role }}</td>
+                                        <td class="text text-center">
+                                        @if($item->status == 'aktif')
+                                            <a href="/user/{{$item->id}}/upStatus" class="btn btn-success btn-sm" user-id="{{$item->id}}">aktif</a>
+                                        @else
+                                            <a href="/user/{{$item->id}}/upStatus" class="btn btn-secondary btn-sm" user-id="{{$item->id}}">non-aktif</a>
+                                        @endif
+                                        </td>
                                         <td>
-                                            @if($item->status == 'aktif')
-                                                <a href="/user/{{$item->id}}/upStatus" class="btn btn-secondary btn-sm" user-id="{{$item->id}}"><i class="nav-icon fas fa-ban"></i></a>
-                                            @else
-                                                <a href="/user/{{$item->id}}/upStatus" class="btn btn-success btn-sm" user-id="{{$item->id}}"><i class="nav-icon fas fa-check"></i></a>
-                                            @endif
-                                            <button type="button" class="btn btn-warning btn-sm" data-toggle="modal" data-target="#editModaluser{{$item->id}}">
+                                            {{-- <button type="button" class="btn btn-warning btn-sm" data-toggle="modal" data-target="#editModaluser{{$item->id}}">
                                                 <i class="fa fa-edit"></i> 
                                                 Edit
-                                              </button>
+                                              </button> --}}
                                             <a href="#" class="btn btn-danger btn-sm delete" user-id="{{ $item->id }}"><i class="nav-icon fas fa-trash"></i>
                                                 Hapus</a>
                                         </td>
@@ -54,6 +55,8 @@
                                 @endforeach
                             </tbody>
                         </table>
+                        </div>
+                    </div>
 
                         {{-- Tambah Data User--}}
                         <div class="modal fade" id="userModal" tabindex="-1" aria-labelledby="exampleModalLabel"

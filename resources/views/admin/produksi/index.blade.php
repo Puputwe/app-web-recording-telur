@@ -24,6 +24,7 @@
                     </button>
                  </div>
                 <div class="card-body">   
+                <div class="table-responsive">
                 <table id="produksi-datatable" class="table table-striped table-bordered" style="width:100%">
                     <thead>
                         <tr>
@@ -52,7 +53,9 @@
                         </tr>
                             @endforeach
                     </tbody>
-                </table>
+                  </table>
+                </div>
+              </div>
 
                 {{-- Modal Tambah Data --}}
                 <div class="modal fade" id="addModalproduksi" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">

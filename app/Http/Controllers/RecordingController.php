@@ -259,7 +259,7 @@ class RecordingController extends Controller
 
     public function grafik(Request $request)
     {
-        $populasi = Produksi::join('Populasi', 'populasi.id', '=', 'produksi.id_populasi')
+        $populasi = Produksi::join('populasi', 'populasi.id', '=', 'produksi.id_populasi')
                     ->select('produksi.*', 'populasi.kd_ayam')
                     ->get();
         $kandang = Kandang::where('status', '=', 'aktif')->get();

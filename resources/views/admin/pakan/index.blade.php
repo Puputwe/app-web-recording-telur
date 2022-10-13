@@ -19,6 +19,7 @@
                         </h3>
                     </div>
                     <div class="card-body">
+                        <div class="table-responsive">
                         <table id="pakan-datatable" class="table table-striped table-bordered" style="width:100%">
                             <thead>
                                 <tr>
@@ -55,6 +56,7 @@
                                 @endforeach
                             </tbody>
                         </table>
+                        </div>
                     </div>
 
                     {{-- Add Modal Pakan --}}

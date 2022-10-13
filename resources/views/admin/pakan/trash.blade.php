@@ -15,6 +15,7 @@
                         </h3>
                     </div>
                     <div class="card-body">
+                        <div class="table-responsive">
                         <table id="pakan-datatable" class="table table-striped table-bordered" style="width:100%">
                             <thead>
                                 <tr>
@@ -46,14 +47,18 @@
                             </tbody>
                         </table>
                     </div>
-                @include('sweetalert::alert')
-                @endsection
-
-                @section('footer')
-                    <script>
-                        $(document).ready(function() {
-                            $('#pakan-datatable').DataTable();
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+@include('sweetalert::alert')
+@endsection
+ 
+@section('footer')
+     <script>
+      $(document).ready(function() {
+        $('#pakan-datatable').DataTable();
                         });
-                    </script>
-
-                @endsection
+    </script>
+ @endsection

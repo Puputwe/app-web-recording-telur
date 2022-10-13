@@ -10,7 +10,7 @@
         <div class="col-md-6">
             <div class="card">
                 <div class="card-body">
-                 <video id="result" width="100%"></video>
+                 <video id="result"  data-app-id="CAMERATAG_APPLICATION_UUID" width="100%"></video>
                 </div>
             </div>
         </div>
@@ -20,6 +20,7 @@
                   <a href="{{ route('produksiTelur') }}" class="btn btn-secondary btn-sm" style="float: right;"><i class="fa fa-undo"></i> Back </a>
                 </div>
                 <div class="card-body">
+                  <div class="table-responsive">
                   <table id="produksi-datatable" class="table table-striped table-bordered">
                     <thead>
                         <tr>
@@ -40,6 +41,7 @@
                             @endforeach
                     </tbody>
                 </table>
+                  </div>
                 </div>
             </div>
         </div>
@@ -50,6 +52,8 @@
 
 @section('footer')
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.1.10/vue.min.js"></script>
+<script src='//cameratag.com/v14/js/cameratag.js' type='text/javascript'></script>
+<link rel='stylesheet' href='//cameratag.com/static/14/cameratag.css'>
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/webrtc-adapter/3.3.3/adapter.min.js"></script>
 <script type="text/javascript" src="https://rawgit.com/schmich/instascan-builds/master/instascan.min.js"></script>
 <script type="text/javascript">

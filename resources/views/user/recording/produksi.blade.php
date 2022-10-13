@@ -104,6 +104,7 @@
           <div class="card">
               <div class="card-header">Riwayat recording telur</div>
               <div class="card-body">
+                <div class="table-responsive">
                 <table id="produksi-datatable" class="table table-striped table-bordered">
                   <thead>
                       <tr>
@@ -124,6 +125,7 @@
                           @endforeach
                   </tbody>
               </table>
+                </div>
               </div>
           </div>
       </div>

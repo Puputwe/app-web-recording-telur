@@ -13,7 +13,8 @@
                     <h3 class="card-title">
                       <a href="/stok-pakan/create" class="btn btn-primary btn-sm"><i class="fa fa-plus"></i>Tambah Data</a>
                  </div>
-                <div class="card-body">   
+                <div class="card-body">  
+                <div class="table-responsive"> 
                 <table id="pakanIn-datatable" class="table table-striped table-bordered" style="width:100%">
                     <thead>
                         <tr>
@@ -41,6 +42,12 @@
                             @endforeach
                     </tbody>
                 </table> 
+                </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
                 @include('sweetalert::alert')
 @endsection
 
