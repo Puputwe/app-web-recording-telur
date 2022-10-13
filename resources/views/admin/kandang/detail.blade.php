@@ -106,7 +106,8 @@
                           <td>{{$no++}}</td>
                             <td>{{$data->kd_ayam}}</td>
                             <td>{{\Carbon\Carbon::parse($data->tgl_tetas)->diffInDays()}} Hari</td>
-                            <td class="text text-center">{!! QrCode::size(50)->generate(Crypt::encrypt($data->id)); !!}</td>
+                            <td class="text text-center">{!! QrCode::size(50)->generate($data->id); !!}</td>
+                            {{-- <td class="text text-center">{!! QrCode::size(50)->generate(Crypt::encrypt($data->id)); !!}</td> --}}
                             <td class="text text-center">
                               @if ($data->status == 'produktif')
                               <span class="badge bg-success" >produktif</span>

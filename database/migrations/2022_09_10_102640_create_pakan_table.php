@@ -19,7 +19,7 @@ class CreatePakanTable extends Migration
             $table->string('jenis');
             $table->string('perusahaan');
             $table->decimal('stok');
-            $table->text('keterangan');
+            $table->text('keterangan')->null();
             $table->timestamps();
         });
     }

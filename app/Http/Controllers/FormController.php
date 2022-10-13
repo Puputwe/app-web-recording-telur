@@ -243,9 +243,6 @@ class FormController extends Controller
     public function laporanGrafik(Request $request)
     {
 
-        $populasi = Produksi::join('Populasi', 'populasi.id', '=', 'produksi.id_populasi')
-        ->select('produksi.*', 'populasi.kd_ayam')
-        ->get();
         $kandang = Kandang::where('status', '=', 'aktif')->get();
 
         $id_kandang = $request->id_kandang;
@@ -275,7 +272,7 @@ class FormController extends Controller
         ->where('id_kandang', 'LIKE', '%'.$id_kandang.'%')
         ->pluck('telur');
 
-        return view('user.laporan.grafik', compact('populasi', 'ayam', 'kandang', 'telur', 'standart_hd', 'standart_fcr', 'bulan', 'get_kandang', 'id_kandang'));
+        return view('user.laporan.grafik', compact('ayam', 'kandang', 'telur', 'standart_hd', 'standart_fcr', 'bulan', 'get_kandang', 'id_kandang'));
     }
     
 

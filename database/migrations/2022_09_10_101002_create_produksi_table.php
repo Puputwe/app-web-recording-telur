@@ -20,7 +20,7 @@ class CreateProduksiTable extends Migration
             $table->foreignId('id_populasi');
             $table->date('tgl_produksi');
             $table->integer('jml_telur');
-            $table->string('keterangan');
+            $table->string('keterangan')->null();
             $table->timestamps();
 
             $table->foreign('id_users')->references('id')->on('users');
