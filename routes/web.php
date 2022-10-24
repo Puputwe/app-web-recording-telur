@@ -12,8 +12,6 @@ use App\Http\Controllers\ProduksiController;
 use App\Http\Controllers\PakanController;
 use App\Http\Controllers\PakanMasukController;
 use App\Http\Controllers\RecordingController;
-use App\Http\Controllers\FormController;
-
 
 // Route::get('/', function () {
 //     return redirect('/home');
@@ -28,28 +26,46 @@ Route::get('/register', [LoginController::class, 'register'])->name('register');
 Route::post('/postregister', [LoginController::class, 'postregister'])->name('postregister');
 Route::get('/logout', [LoginController::class, 'logout'])->name('logout');
 
-//DASHBOARD
-Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard')->middleware('auth');
+//--- HALAMAN ADMIN & USER ---//
+Route::middleware(['auth'])->group(function () {
+   
+    Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
+    
+    Route::get('/produksi', [ProduksiController::class, 'index'])->name('produksi');
+
+    Route::get('/recording', [RecordingController::class, 'index'])->name('recording');
+    Route::get('/recording/search', [RecordingController::class, 'searchRecording'])->name('searchRecording');
+    Route::get('/recording/cetak_recording', [RecordingController::class, 'cetak_recording'])->name('cetak_recording');
+
+    Route::get('/recording/grafik', [RecordingController::class, 'grafik'])->name('grafik');
+
+});
 
 //--- HALAMAN USER ----//
 
 Route::middleware(['auth', 'user'])->group(function () {
+    
+    //PRODUKSI
+    Route::get('/scan/kode-ayam', [ProduksiController::class, 'qrScannerAyam'])->name('qrScanner');
+    Route::get('/scan/kode-kandang', [ProduksiController::class, 'qrScannerKandang'])->name('QR_Scanner');
+    Route::get('/form/{id}/kode-kandang', [ProduksiController::class, 'form_produksi'])->name('form-produksi');
+    Route::get('/form/{id}/kode-ayam', [ProduksiController::class, 'form_ayam'])->name('form-ayam');
 
-    Route::get('/dashboard/user', [FormController::class, 'index'])->name('dashboard.user');
+    Route::post('/produksi/store', [ProduksiController::class, 'store'])->name('store-produksi');
+    Route::post('/produksi/store-all', [ProduksiController::class, 'store_all'])->name('store-all');
 
-    Route::get('/performa/ajax', [FormController::class, 'ajaxPerforma'])->name('ajax.performa');
-    Route::get('/recording/performa', [FormController::class, 'createPerforma'])->name('create.performa');
-    Route::post('/performa/store', [FormController::class, 'storePerforma'])->name('store.performa');
 
-    Route::get('/laporan', [FormController::class, 'laporanPerforma'])->name('laporanPerforma');
-    Route::get('/laporan/search', [FormController::class, 'searchLaporan'])->name('searchLaporan');
-    Route::get('/laporan/grafik', [FormController::class, 'laporanGrafik'])->name('laporanGrafik');
+    //PERFORMA
+    Route::get('/recording/ajax', [RecordingController::class, 'ajax'])->name('ajax.recording');
+    Route::get('/recording/create', [RecordingController::class, 'create'])->name('create-recording');
+    Route::post('/recording/store', [RecordingController::class, 'store'])->name('store-recording');
 
-    Route::get('/produksi/telur', [FormController::class, 'produksiTelur'])->name('produksiTelur');
-    Route::get('/form/{id}/produksi', [FormController::class, 'formProduksi'])->name('formProduksi');
-    Route::get('/scan/produksi', [FormController::class, 'qrScanner'])->name('qrScanner');
-    Route::post('/form/store', [FormController::class, 'store'])->name('formStore');
-    Route::post('/form/storeAll', [FormController::class, 'storeAll'])->name('formStoreAll');
+    //STOK-PAKAN
+    Route::get('/stok-pakan', [PakanMasukController::class, 'index'])->name('stok-pakan');
+    Route::get('/stok-pakan/ajax', [PakanMasukController::class, 'ajax'])->name('ajax.stok-pakan');
+    Route::get('/stok-pakan/create', [PakanMasukController::class, 'create'])->name('create.stok-pakan');
+    Route::post('/stok-pakan/store', [PakanMasukController::class, 'store'])->name('store.stok-pakan');
+    Route::get('/stok-pakan/{id}/{p_id}/{p_jml}/delete', [PakanMasukController::class, 'delete'])->name('delete.stok-pakan');
 });
 
 
@@ -106,9 +122,6 @@ Route::middleware(['auth', 'admin'])->group(function () {
         Route::get('/populasi/delete_all', [PopulasiController::class, 'delete_all'])->name('populasi_delete_all');
 
         //PRODUKSI
-        Route::get('/produksi', [ProduksiController::class, 'index'])->name('produksi');
-        Route::post('/produksi/store', [ProduksiController::class, 'store'])->name('store-produksi');
-        Route::post('/produksi/{id}/update', [ProduksiController::class, 'update'])->name('update-produksi');
         Route::get('/produksi/{id}/delete', [ProduksiController::class, 'delete'])->name('delete-produksi');
         Route::get('/produksi/produksi_export', [ProduksiController::class, 'produksi_export'])->name('produksi_export');
         Route::post('/produksi/produksi_import', [ProduksiController::class, 'produksi_import'])->name('produksi_import');
@@ -129,35 +142,21 @@ Route::middleware(['auth', 'admin'])->group(function () {
         Route::get('/pakan/delete_kill/{id}', [PakanController::class, 'delete_kill'])->name('pakan_delete');
         Route::get('/pakan/delete_all', [PakanController::class, 'delete_all'])->name('pakan_delete_all');
 
-        //STOK-PAKAN
-        Route::get('/stok-pakan', [PakanMasukController::class, 'index'])->name('stok-pakan');
-        Route::get('/stok-pakan/ajax', [PakanMasukController::class, 'ajax'])->name('ajax.stok-pakan');
-        Route::get('/stok-pakan/create', [PakanMasukController::class, 'create'])->name('create.stok-pakan');
-        Route::post('/stok-pakan/store', [PakanMasukController::class, 'store'])->name('store.stok-pakan');
-        Route::get('/stok-pakan/{id}/{p_id}/{p_jml}/delete', [PakanMasukController::class, 'delete'])->name('delete.stok-pakan');
-
-        Route::get('/stok-pakan/trash', [PakanMasukController::class, 'trash'])->name('stok_trash');
-        Route::get('/stok-pakan/{id}/{p_id}/{p_jml}/restore', [PakanMasukController::class, 'restore'])->name('stok_restore');
-        Route::get('/stok-pakan/delete_all', [PakanMasukController::class, 'delete_all'])->name('stok_delete_all');
-        Route::get('/stok-pakan/delete_kill/{id}', [PakanMasukController::class, 'delete_kill'])->name('stok_delete');
-
         //RECORDING
-        Route::get('/recording', [RecordingController::class, 'index'])->name('recording');
-        Route::get('/recording/ajax', [RecordingController::class, 'ajax'])->name('ajax.recording');
-        Route::get('/recording/create', [RecordingController::class, 'create'])->name('create.recording');
-        Route::post('/recording/store', [RecordingController::class, 'store'])->name('store.recording');
         Route::get('/recording/{id}/{p_id}/{p_jml}/delete', [RecordingController::class, 'delete'])->name('delete.recording');
 
-        Route::get('/recording/search', [RecordingController::class, 'searchRecording'])->name('searchRecording');
         Route::get('/recording/recording_export', [RecordingController::class, 'recording_export_all'])->name('recording_export_all');
         Route::get('/recording/recording_export/{id}', [RecordingController::class, 'recording_export'])->name('recording_export');
         Route::post('/recording/recording_import', [RecordingController::class, 'recording_import'])->name('recording_import');
-        Route::get('/recording/cetak_recording', [RecordingController::class, 'cetak_recording'])->name('cetak_recording');
-
+       
         Route::get('/recording/trash', [RecordingController::class, 'trash'])->name('recording_trash');
         Route::get('/recording/{id}/{p_id}/{p_jml}/restore', [RecordingController::class, 'restore'])->name('recording_restore');
         Route::get('/recording/delete_all', [RecordingController::class, 'delete_all'])->name('recording_delete_all');
         Route::get('/recording/delete_kill/{id}', [RecordingController::class, 'delete_kill'])->name('recording_delete');
 
-        Route::get('/recording/grafik', [RecordingController::class, 'grafik'])->name('grafik');
+        //STOK-PAKAN
+        Route::get('/stok-pakan/trash', [PakanMasukController::class, 'trash'])->name('stok_trash');
+        Route::get('/stok-pakan/{id}/{p_id}/{p_jml}/restore', [PakanMasukController::class, 'restore'])->name('stok_restore');
+        Route::get('/stok-pakan/delete_all', [PakanMasukController::class, 'delete_all'])->name('stok_delete_all');
+        Route::get('/stok-pakan/delete_kill/{id}', [PakanMasukController::class, 'delete_kill'])->name('stok_delete');
 });

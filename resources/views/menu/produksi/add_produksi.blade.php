@@ -1,13 +1,16 @@
-@extends('layouts.master-user')
-@section('page')
-    <li class="breadcrumb-item active">Produksi Telur</li>
-@endsection
+@extends('layouts.form-template')
 
 @section('content')
-<div class="container">
+<div class="container wrapper--w680">
     <div class="row">
         <div class="col-md-12">
-            <div class="card card-olive card-outline">
+            <div class="card card-15">
+                 <div class="card-header">
+                        <a href="{{ route('qrScanner') }}" class="btn btn-olive" style="float: left;"><i class="fa fa-arrow-left"></i></a>
+                        <h5 class="text text-center">
+                            <b>Form Produksi Telur</b>
+                        </h5>
+                    </div>
                 <div class="card-body">
                     <table style="width: 100%; border="0">     
                         <tr class="text-center">
@@ -21,11 +24,11 @@
                             <td>{{\Carbon\Carbon::parse($populasi->tgl_tetas)->diffInDays()}} Hari</td>
                             <td>{{$total_telur}} Butir</td>
                             <td> @if ($populasi->status == 'produktif')
-                                <span class="badge bg-success">Produktif</span>
+                                <span >Produktif</span>
                                 @elseif ($populasi->status == 'afkir')
-                                    <span class="badge bg-danger">Afkir</span>
+                                    <span >Afkir</span>
                                 @elseif ($populasi->status == 'mati')
-                                    <span class="badge bg-secondary">Mati</span>                                     
+                                    <span >Mati</span>                                     
                                 @endif  </td>
                         </tr>
                     </table>
@@ -35,17 +38,12 @@
     </div>
 </div>
      {{-- Tambah Data --}}
-     <div class="container">
+     <div class="container wrapper--w680">
         <div class="row">
             <div class="col-md-12">
-                <div class="card card-olive card-outline">
-                    <div class="card-header">
-                        <h1 class="card-title">
-                            <i class="fas fa-edit"></i>
-                            <b>Tambah data produksi</b>
-                        </h1>
-                    </div>
-                        <form action="/form/store" enctype="multipart/form-data" method="POST">
+                <div class="card card-15">
+                   
+                        <form action="/produksi/store" enctype="multipart/form-data" method="POST">
                             <div class="card-body">
                                 @csrf 
                                 <div class="row">
@@ -60,13 +58,12 @@
                                         </div>
                                     </div>
                                     <div class="form-group col-lg-12">
-                                        <label class="font-weight-bold text-small">Catatan<span class="text-olive ml-1">opsional</span></label>
+                                        <label class="font-weight-bold text-small">Catatan</label>
                                         <textarea type="text"  name="keterangan" class="form-control" id="keterangan"
                                          placeholder="*anda dapat memberikan catatan berupa kondisi ayam saat ini"></textarea>
                                     </div>
                                     <div class="form-group col-lg-12">
-                                        <a href="{{ route('produksiTelur') }}" class="btn btn-secondary btn-sm"><i class="fa fa-undo"></i> Back </a>
-                                        <button type="submit" class="btn btn-primary btn-sm">Submit</button>
+                                        <button type="submit" class="btn btn-olive">Submit</button>
                                     </div>
                                 </div>
                             </div>

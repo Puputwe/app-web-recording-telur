@@ -8,19 +8,19 @@
 <div class="container-fluid">
     <div class="row">
         <div class="col-12">
-            <div class="card">
+            <div class="card card-olive card-outline">
                 <div class="card-header">
                     <h3 class="card-title">
-                    <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#addModalkandang">
+                    <button type="button" class="btn btn-olive btn-sm" data-toggle="modal" data-target="#addModalkandang">
                       <i class="fa fa-plus"></i>  
-                      Data
+                      Tambah Kandang
                     </button>
                  </div>
                 <div class="card-body">   
                 <div class="table-responsive">
-                <table id="kandang-datatable" class="table table-striped table-bordered" style="width:100%">
+                <table id="kandang-datatable" class="table table-bordered" style="width:100%">
                     <thead>
-                        <tr>
+                        <tr class="table-secondary">
                             <th>No</th>
                             <th>Kode Kandang</th>
                             <th>Tanggal Chickin</th>
@@ -38,7 +38,7 @@
                             <td>{{ date('d F Y', strtotime($data->tgl_chickin))}}</td>
                             <td>{{$data->kapasitas}} Ekor</td>
                             <td>
-                              <a href="/kandang/{{$data->id}}/detail" class="btn btn-info btn-sm"></i>Lihat Populasi</a>
+                              <a href="/kandang/{{$data->id}}/detail" class="btn btn-olive btn-sm"></i>Lihat Populasi</a>
                             </td>
                             <td>
                               @if($data->status == 'aktif')
@@ -50,7 +50,10 @@
                               <i class="fa fa-edit"></i>
                             </button>
                             <a href="#" class="btn btn-danger btn-sm delete" kandang-id="{{$data->id}}"><i class="nav-icon fas fa-trash"></i></a>
-                            </td>
+                            <button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#detailModalkandang{{$data->id}}">
+                              <i class="fa fa-qrcode"></i>
+                            </button>
+                          </td>
                         </tr>
                             @endforeach
                     </tbody>
@@ -133,6 +136,33 @@
                     </div>
                   </div>
                   @endforeach
+
+              {{-- Detail  Data --}}
+              @foreach ($kandang as $detail)
+              <div class="modal fade" id="detailModalkandang{{$detail->id}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+              <div class="modal-dialog">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">QR Code</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                      <span aria-hidden="true">&times;</span>
+                    </button>
+                  </div>
+                  <div class="modal-body">
+                    <table style="width: 100%;" border="0">
+                      <tr align="center">
+                        <th>Kode Kandang : {{ $detail->kd_kandang}}</th>
+                    </tr>
+                    <tr>
+                        <th class="text-center" colspan="2">{!! QrCode::size(150)->generate(Crypt::encrypt($detail->id)); !!}</th>
+                    </tr>
+                  </table>
+                      </form>
+                  </div>
+                </div>
+              </div>
+            </div>
+             @endforeach
 @include('sweetalert::alert')
 @endsection
 

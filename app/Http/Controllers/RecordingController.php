@@ -24,7 +24,7 @@ class RecordingController extends Controller
     {
         $recording = Recording::join('kandang', 'kandang.id', '=', 'data_recording.id_kandang')
                     ->join('pakan', 'pakan.id', '=', 'data_recording.id_pakan')
-                    ->join('users', 'pakan.id', '=', 'data_recording.id_pakan')
+                    ->join('users', 'users.id', '=', 'data_recording.id_users')
                     ->select('data_recording.*', 'kandang.kd_kandang', 'pakan.nama', 'pakan.jenis', 'users.name')
                     ->get();
 
@@ -38,7 +38,7 @@ class RecordingController extends Controller
                   ->where('id_kandang', 'LIKE', '%'.$id_kandang.'%')
                   ->get();
         
-        return view('admin.recording.index', compact('recording', 'kandang', 'pakan', 'result', 'id_kandang'));
+        return view('menu.recording.index', compact('recording', 'kandang', 'pakan', 'result', 'id_kandang'));
     }
     
     public function create(Request $request)
@@ -47,7 +47,7 @@ class RecordingController extends Controller
         $pakan   = Pakan::all();
         $user    = User::all();
 
-        return view('admin.recording.add', compact('kandang', 'pakan', 'user'));
+        return view('menu.recording.add', compact('kandang', 'pakan', 'user'));
     }
 
     public function store(Request $request)
@@ -97,11 +97,11 @@ class RecordingController extends Controller
     {
     	$recording_trash = Recording::join('kandang', 'kandang.id', '=', 'data_recording.id_kandang')
                             ->join('pakan', 'pakan.id', '=', 'data_recording.id_pakan')
-                            ->join('users', 'pakan.id', '=', 'data_recording.id_pakan')
+                            ->join('users', 'users.id', '=', 'data_recording.id_users')
                             ->select('data_recording.*', 'kandang.kd_kandang', 'pakan.nama', 'pakan.jenis', 'users.name')
                             ->onlyTrashed()
                             ->get();
-    	return view('admin.recording.trash', compact('recording_trash'));
+    	return view('menu.recording.trash', compact('recording_trash'));
     }
 
     public function restore(Request $request, $id, $p_id, $p_jml)
@@ -141,14 +141,14 @@ class RecordingController extends Controller
         $id_pakan['id_pakan'] = $request->id_pakan;
         $ajax_pakan           = Pakan::where('id', $id_pakan)->get();
 
-        return view('admin.recording.ajax', compact('ajax_kandang', 'ajax_pakan'));
+        return view('menu.recording.ajax', compact('ajax_kandang', 'ajax_pakan'));
     }
 
     public function searchRecording(Request $request)
     {
         $recording = Recording::join('kandang', 'kandang.id', '=', 'data_recording.id_kandang')
                     ->join('pakan', 'pakan.id', '=', 'data_recording.id_pakan')
-                    ->join('users', 'pakan.id', '=', 'data_recording.id_pakan')
+                    ->join('users', 'users.id', '=', 'data_recording.id_users')
                     ->select('data_recording.*', 'kandang.kd_kandang', 'pakan.nama', 'pakan.jenis', 'users.name')
                     ->get();
 
@@ -161,7 +161,7 @@ class RecordingController extends Controller
          {
              $result = Recording::join('kandang', 'kandang.id', '=', 'data_recording.id_kandang')
                        ->join('pakan', 'pakan.id', '=', 'data_recording.id_pakan')
-                       ->join('users', 'pakan.id', '=', 'data_recording.id_pakan')
+                       ->join('users', 'users.id', '=', 'data_recording.id_users')
                        ->select('data_recording.*', 'kandang.kd_kandang', 'pakan.nama', 'pakan.jenis', 'users.name')
                        ->where('id_kandang', 'LIKE', '%'.$id_kandang.'%')
                        ->get();
@@ -169,7 +169,7 @@ class RecordingController extends Controller
          if( $request->fromDate && $request->toDate ){
              $result = Recording::join('kandang', 'kandang.id', '=', 'data_recording.id_kandang')
                        ->join('pakan', 'pakan.id', '=', 'data_recording.id_pakan')
-                       ->join('users', 'pakan.id', '=', 'data_recording.id_pakan')
+                       ->join('users', 'users.id', '=', 'data_recording.id_users')
                        ->select('data_recording.*', 'kandang.kd_kandang', 'pakan.nama', 'pakan.jenis', 'users.name')
                        ->where('tanggal', '>=', $request->fromDate)
                        ->where('tanggal', '<=', $request->toDate)
@@ -179,7 +179,7 @@ class RecordingController extends Controller
          {
              $result = Recording::join('kandang', 'kandang.id', '=', 'data_recording.id_kandang')
                        ->join('pakan', 'pakan.id', '=', 'data_recording.id_pakan')
-                       ->join('users', 'pakan.id', '=', 'data_recording.id_pakan')
+                       ->join('users', 'users.id', '=', 'data_recording.id_users')
                        ->select('data_recording.*', 'kandang.kd_kandang', 'pakan.nama', 'pakan.jenis', 'users.name')
                        ->where('id_kandang', 'LIKE', '%'.$id_kandang.'%')
                        ->where('tanggal', '>=', $request->fromDate)
@@ -187,7 +187,7 @@ class RecordingController extends Controller
                        ->get();
          }
         
-        return view('admin.recording.index', compact('recording', 'result', 'kandang'));
+        return view('menu.recording.index', compact('recording', 'result', 'kandang'));
     }
 
     public function recording_export(Request $request)
@@ -254,7 +254,7 @@ class RecordingController extends Controller
                               ->sum('jml_pakan');
             
         }
-        return view('admin.recording.cetak_recording', compact('recording', 'tgl_awal', 'tgl_akhir', 'id_kandang', 'get_kandang', 'get_populasi', 'total_telur', 'berat_telur', 'total_pakan'));
+        return view('menu.recording.cetak_recording', compact('recording', 'tgl_awal', 'tgl_akhir', 'id_kandang', 'get_kandang', 'get_populasi', 'total_telur', 'berat_telur', 'total_pakan'));
     }
 
     public function grafik(Request $request)
@@ -289,6 +289,6 @@ class RecordingController extends Controller
             ->where('id_kandang', 'LIKE', '%'.$id_kandang.'%')
             ->pluck('telur');
 
-        return view('admin.recording.grafik', compact( 'ayam', 'kandang', 'telur', 'standart_hd', 'standart_fcr', 'bulan', 'get_kandang', 'id_kandang'));
+        return view('menu.recording.grafik', compact( 'ayam', 'kandang', 'telur', 'standart_hd', 'standart_fcr', 'bulan', 'get_kandang', 'id_kandang'));
     }
 }

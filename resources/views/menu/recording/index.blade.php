@@ -5,7 +5,7 @@
 @endsection
 
 @section('content')
-{{-- <div class="container-fluid">
+<div class="container-fluid">
   <div class="row">
       <div class="col-12">
           <div class="card">
@@ -60,7 +60,7 @@
           </div>
       </div>
   </div>
-</div> --}}
+</div>
 
 <div class="container-fluid">
     <div class="row">
@@ -68,8 +68,17 @@
             <div class="card">
                 <div class="card-header">
                     <h3 class="card-title">
-                      <a href="/recording/create" class="btn btn-primary btn-sm"><i class="fa fa-plus"></i> Data</a>
+                      @if(auth()->user()->role_id == 2)
+                      <a href="/recording/create" class="btn btn-olive btn-sm" style="float: left;">
+                        <i class="fa fa-plus"></i> Tambah Recording
+                      </a>
                       <h3 class="text text-right">
+                        <button type="button" class="btn btn-secondary btn-sm" data-toggle="modal" data-target="#printModalrecording"> 
+                          <i class="fa fa-print"></i>  
+                          Print
+                        </button>
+                      @else
+                        <h3 class="text text-right">
                         <button type="button" class="btn btn-secondary btn-sm" data-toggle="modal" data-target="#printModalrecording"> 
                           <i class="fa fa-print"></i>  
                           Print
@@ -80,54 +89,97 @@
                         <button type="button" class="btn btn-success btn-sm" data-toggle="modal" data-target="#importModalrecording"> 
                           Import
                         </button>
+                 @endif
                  </div>
                 <div class="card-body"> 
                 <div class="table-responsive">
+                @if(auth()->user()->role_id == 2)
                 <table id="recording-datatable" class="table table-striped table-bordered tabel-sm" style="width:100%">
-                    <thead>
-                        <tr>
-                            <th rowspan="2">Petugas</th>
-                            <th rowspan="2">Kandang</th>
-                            <th rowspan="2">Tanggal</th>
-                            <th class="text-center" colspan="3">Populasi</th>
-                            <th class="text-center" colspan="2">Pakan</th>
-                            <th class="text-center" colspan="2">Produksi Telur</th>
-                            <th rowspan="2">HD</th>
-                            <th rowspan="2">FCR</th>
-                            <th rowspan="2">Aksi</th>
-                        </tr>
-                        <tr>
-                            <th>Hidup</th>
-                            <th>Afkir</th>
-                            <th>Mati</th>
-                            <th>Jenis</th>
-                            <th>Total</th>
-                            <th>Jumlah</th>
-                            <th>Berat</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        @foreach ($result as $data )
-                        <tr>
-                            <td>{{$data->name}}</td>
-                            <td>{{$data->kd_kandang}}</td>
-                            <td>{{date('d-m-Y', strtotime($data->tanggal))}}</td>
-                            <td>{{$data->ayam_hidup}}</td>
-                            <td>{{$data->ayam_afkir}}</td>
-                            <td>{{$data->ayam_mati}}</td>
-                            <td>{{$data->jenis}}</td>
-                            <td>{{number_format($data->jml_pakan)}} Kg</td>
-                            <td>{{$data->jml_telur}} Butir</td>
-                            <td>{{$data->berat_telur}} Kg</td>
-                            <td>{{$data->hd}} %</td>
-                            <td>{{$data->fcr}}</td>
-                            <td>
-                              <a href="#" class="btn btn-danger btn-sm delete-out" pakanid="{{$data->id_pakan}}" pakanjml="{{$data->jml_pakan}}" recording-id="{{$data->id}}"><i class="nav-icon fas fa-trash"></i></a>
-                            </td>
-                        </tr>
-                            @endforeach
-                    </tbody>
-                </table> 
+                  <thead>
+                      <tr>
+                          <th rowspan="2">Kandang</th>
+                          <th rowspan="2">Tanggal</th>
+                          <th class="text-center" colspan="3">Populasi</th>
+                          <th class="text-center" colspan="2">Pakan</th>
+                          <th class="text-center" colspan="2">Produksi Telur</th>
+                          <th rowspan="2">HD</th>
+                          <th rowspan="2">FCR</th>
+                      </tr>
+                      <tr>
+                          <th>Hidup</th>
+                          <th>Afkir</th>
+                          <th>Mati</th>
+                          <th>Jenis</th>
+                          <th>Total</th>
+                          <th>Jumlah</th>
+                          <th>Berat</th>
+                      </tr>
+                  </thead>
+                  <tbody>
+                      @foreach ($result as $data )
+                      <tr>
+                          <td>{{$data->kd_kandang}}</td>
+                          <td>{{date('d-m-Y', strtotime($data->tanggal))}}</td>
+                          <td>{{$data->ayam_hidup}}</td>
+                          <td>{{$data->ayam_afkir}}</td>
+                          <td>{{$data->ayam_mati}}</td>
+                          <td>{{$data->jenis}}</td>
+                          <td>{{number_format($data->jml_pakan)}} Kg</td>
+                          <td>{{$data->jml_telur}} Butir</td>
+                          <td>{{$data->berat_telur}} Kg</td>
+                          <td>{{$data->hd}} %</td>
+                          <td>{{$data->fcr}}</td>
+                      </tr>
+                          @endforeach
+                  </tbody>
+              </table> 
+                @else
+                <table id="recording-datatable" class="table table-striped table-bordered tabel-sm" style="width:100%">
+                  <thead>
+                      <tr>
+                          <th rowspan="2">Petugas</th>
+                          <th rowspan="2">Kandang</th>
+                          <th rowspan="2">Tanggal</th>
+                          <th class="text-center" colspan="3">Populasi</th>
+                          <th class="text-center" colspan="2">Pakan</th>
+                          <th class="text-center" colspan="2">Produksi Telur</th>
+                          <th rowspan="2">HD</th>
+                          <th rowspan="2">FCR</th>
+                          <th rowspan="2">Aksi</th>
+                      </tr>
+                      <tr>
+                          <th>Hidup</th>
+                          <th>Afkir</th>
+                          <th>Mati</th>
+                          <th>Jenis</th>
+                          <th>Total</th>
+                          <th>Jumlah</th>
+                          <th>Berat</th>
+                      </tr>
+                  </thead>
+                  <tbody>
+                      @foreach ($result as $data )
+                      <tr>
+                          <td>{{$data->name}}</td>
+                          <td>{{$data->kd_kandang}}</td>
+                          <td>{{date('d-m-Y', strtotime($data->tanggal))}}</td>
+                          <td>{{$data->ayam_hidup}}</td>
+                          <td>{{$data->ayam_afkir}}</td>
+                          <td>{{$data->ayam_mati}}</td>
+                          <td>{{$data->jenis}}</td>
+                          <td>{{number_format($data->jml_pakan)}} Kg</td>
+                          <td>{{$data->jml_telur}} Butir</td>
+                          <td>{{$data->berat_telur}} Kg</td>
+                          <td>{{$data->hd}} %</td>
+                          <td>{{$data->fcr}}</td>
+                          <td>
+                            <a href="#" class="btn btn-danger btn-sm delete-out" pakanid="{{$data->id_pakan}}" pakanjml="{{$data->jml_pakan}}" recording-id="{{$data->id}}"><i class="nav-icon fas fa-trash"></i></a>
+                          </td>
+                      </tr>
+                          @endforeach
+                  </tbody>
+              </table> 
+                @endif
               </div>
             </div>
 

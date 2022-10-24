@@ -3,13 +3,80 @@
 # General
 --------------------------------------------------------------*/
 body {
-  font-family: "Open Sans", sans-serif;
+  font-family: "Open Sans", "Arial", "Helvetica Neue", sans-serif;
   color: #444444;
 }
 
 a {
   color: #3d9970;
   text-decoration: none;
+}
+
+p {
+  font-size: 14px;
+  color: #444444;
+}
+
+.wrapper {
+  margin: 0 auto;
+}
+
+.wrapper--w1000 {
+  max-width: 1000px;
+}
+
+.wrapper--w790 {
+  max-width: 790px;
+}
+
+.wrapper--w680 {
+  max-width: 680px;
+}
+
+.btn-olive {
+  color: #ffff;
+  background-color: #3d9970;
+  border-color: #3d9970;
+  box-shadow: none;
+}
+
+.center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+}
+
+.card {
+  width: 50%;
+  height: auto;
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  border-radius: 3px;
+  background: #fff;
+  margin-bottom: 10px;
+}
+
+.card-5 {
+  background: #fff;
+  -webkit-border-radius: 10px;
+  -moz-border-radius: 10px;
+  border-radius: 10px;
+  -webkit-box-shadow: 0px 8px 20px 0px rgba(0, 0, 0, 0.15);
+  -moz-box-shadow: 0px 8px 20px 0px rgba(0, 0, 0, 0.15);
+  box-shadow: 0px 8px 20px 0px rgba(0, 0, 0, 0.15);
+}
+
+.card-header {
+  color: #3d9970;
+}
+
+.bg-olive {
+  background: #3d9970;
+}
+
+.page-wrapper {
+  min-height: 100vh;
 }
 
 a:hover {
@@ -1080,7 +1147,7 @@ section {
 }
 
 .team .member {
-  margin-bottom: 20px;
+  margin-bottom: 10px;
   overflow: hidden;
   text-align: center;
   border-radius: 5px;
@@ -1590,8 +1657,8 @@ section {
 }
 
 .blog .blog-comments .comment h5 {
-  font-size: 16px;
-  margin-bottom: 2px;
+  font-size: 12px;
+  margin-bottom: 1px;
 }
 
 .blog .blog-comments .comment h5 a {
@@ -1871,7 +1938,7 @@ section {
 
 #footer .footer-top {
   padding: 60px 0 30px 0;
-  background: #fff;
+  background: #3d9970;
 }
 
 #footer .footer-top .footer-contact {

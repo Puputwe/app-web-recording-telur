@@ -42,47 +42,48 @@ class FormController extends Controller
         return view('user.dashboard', compact('telur', 'hari','populasi', 'pakan_keluar', 'produktif', 'afkir', 'mati', 'pakan', 'produksi', 'telur_today'));
     }
     
-    public function produksiTelur(Request $request){
-
-        $kandang = Kandang::where('status', '=', 'aktif')->get();
-        $produksi = Produksi::join('populasi', 'populasi.id', '=', 'produksi.id_populasi')
-                ->join('kandang', 'kandang.id', '=', 'produksi.id_kandang')
-                ->OrderBy('tgl_produksi', 'asc')
-                ->select('produksi.*', 'kandang.kd_kandang', 'populasi.kd_ayam')
-                ->get();
-
-        $id_kandang = $request->id_kandang;
-        $get_kandang    = Kandang::where('id', $id_kandang)->select('kd_kandang')->get();
-        $populasi = Populasi::where('id_kandang', $id_kandang)->where('status', '=', 'produktif')->get();
-
-        return view('user.recording.produksi', compact('kandang', 'populasi', 'id_kandang', 'get_kandang', 'produksi'));
-    }
 
     public function qrScanner(){
 
         $kandang = Kandang::where('status', '=', 'aktif')->get();
 
-        $date = date('Y-m-d');
-        $populasi =  $produksi = Produksi::join('populasi', 'populasi.id', '=', 'produksi.id_populasi')
-        ->join('kandang', 'kandang.id', '=', 'produksi.id_kandang')
-        ->where('tgl_produksi', '=', $date)
-        ->select('produksi.*', 'kandang.kd_kandang', 'populasi.kd_ayam')
-        ->get();
+        return view('user.recording.qrscanner', compact('kandang'));
+    }
 
-        return view('user.recording.qrscanner', compact('kandang', 'populasi', 'produksi'));
+    public function qrScannerKandang(){
+
+        $kandang = Kandang::where('status', '=', 'aktif')->get();
+
+        return view('user.recording.qr_scanner', compact('kandang'));
     }
 
     public function formProduksi($id)
     {
-       // $enkripsi= Crypt::decrypt($id);
+        $enkripsi= Crypt::decrypt($id);
         
-        $populasi = Populasi::where('id', $id)->first();
+        $populasi = Populasi::where('id', $enkripsi)->first();
 
-        $total_telur = Produksi::where('id_populasi', $id)->sum('jml_telur');
+        $total_telur = Produksi::where('id_populasi', $enkripsi)->sum('jml_telur');
         if($populasi){
             return view('user.recording.add_produksi', compact('populasi', 'total_telur'));  
           }else{
             return back()->with('warning', 'Qr Code tidak terdaftar!');  
+          }
+    }
+
+    public function produksiTelur($id)
+    {
+        $enkripsi = Crypt::decrypt($id);
+        
+        $get_kandang    = Kandang::where('id', $enkripsi)->select('kd_kandang')->get();
+        $populasi = Populasi::where('id_kandang', $enkripsi)->where('status', '=', 'produktif')->get();
+
+        $kandang = Kandang::where('id', $enkripsi)->first();
+
+        if($kandang){
+            return view('user.produksi', compact('kandang', 'get_kandang', 'populasi'));  
+          }else{
+            return back()->with('warning', 'Maaf, kode QR tidak terdaftar!');  
           }
     }
 
@@ -243,6 +244,9 @@ class FormController extends Controller
     public function laporanGrafik(Request $request)
     {
 
+        $populasi = Produksi::join('Populasi', 'populasi.id', '=', 'produksi.id_populasi')
+        ->select('produksi.*', 'populasi.kd_ayam')
+        ->get();
         $kandang = Kandang::where('status', '=', 'aktif')->get();
 
         $id_kandang = $request->id_kandang;
@@ -272,7 +276,7 @@ class FormController extends Controller
         ->where('id_kandang', 'LIKE', '%'.$id_kandang.'%')
         ->pluck('telur');
 
-        return view('user.laporan.grafik', compact('ayam', 'kandang', 'telur', 'standart_hd', 'standart_fcr', 'bulan', 'get_kandang', 'id_kandang'));
+        return view('user.laporan.grafik', compact('populasi', 'ayam', 'kandang', 'telur', 'standart_hd', 'standart_fcr', 'bulan', 'get_kandang', 'id_kandang'));
     }
     
 

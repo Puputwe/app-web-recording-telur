@@ -1,18 +1,16 @@
-@extends('layouts.master')
-@section('page')
-    <li class="breadcrumb-item active">Recording</li>
-@endsection
+@extends('layouts.form-template')
 
 @section('content')
+<div class="wrapper wrapper--w1000">
     <div class="container-fluid">
         <div class="row">
             <div class="col-md-12">
-                <div class="card card-olive card-outline">
+                <div class="card card-5">
                     <div class="card-header">
-                        <h1 class="card-title">
-                            <i class="fas fa-edit"></i>
-                            <b>Tambah data recording</b>
-                        </h1>
+                        <a href="{{ route('recording') }}" class="btn btn-olive" style="float: left;"><i class="fa fa-arrow-left"></i></a>
+                        <h3 class="text text-center">
+                            <b>Form Catatan Harian</b>
+                        </h3>
                     </div>
                         <form action="/recording/store" enctype="multipart/form-data" method="POST">
                             <div class="card-body">
@@ -34,7 +32,7 @@
                                         <input type="date" name="tanggal" class="form-control" id="tanggal" required>
                                     </div>
                                     <div class="form-group col-lg-12">
-                                        <h5 class="text-center"style="background-color: rgb(233,236,239);margin: 3px; padding: 3px; font-family : calibri">Populasi Ayam</h5>
+                                        <h5 class="text-center"style="background-color: rgb(233,236,239);margin: 3px; padding: 3px; font-family : Helvetica Neue">Populasi Ayam</h5>
                                     </div>
                                     <div class="form-group col-lg-4">
                                         <label class="font-weight-bold text-small">Ayam Produktif<span class="text-olive ml-1">*</span></label>
@@ -64,7 +62,7 @@
                                         </div>
                                     </div>
                                     <div class="form-group col-lg-12">
-                                        <h5 class="text-center"style="background-color: rgb(233,236,239);margin: 3px; padding: 3px; font-family : calibri">Pemberian Pakan</h5>
+                                        <h5 class="text-center"style="background-color: rgb(233,236,239);margin: 3px; padding: 3px; font-family : Helvetica Neue">Pemberian Pakan</h5>
                                     </div>
                                     <div class="form-group col-lg-6">
                                         <label class="font-weight-bold text-small">Pakan<span class="text-olive ml-1">*</span></label>
@@ -89,7 +87,7 @@
                                     <div id="detail_pakan" class="detail_pakan"></div>
 
                                     <div class="form-group col-lg-12">
-                                        <h5 class="text-center"style="background-color: rgb(233,236,239);margin: 3px; padding: 3px;  font-family : calibri;">Produksi & Performa Telur</h5>
+                                        <h5 class="text-center"style="background-color: rgb(233,236,239);margin: 3px; padding: 3px;  font-family : Helvetica Neue;">Produksi & Performa Telur</h5>
                                     </div>
                                     <div class="form-group col-lg-6">
                                         <label class="font-weight-bold text-small">Jumlah Telur<span class="text-olive ml-1">*</span></label>
@@ -118,8 +116,7 @@
                                         <input type="text" name="fcr" class="form-control" id="fcr" readonly required>
                                     </div>
                                     <div class="form-group col-lg-12">
-                                        <a href="{{ route('recording') }}" class="btn btn-secondary btn-sm"><i class="fa fa-undo"></i> Back </a>
-                                        <button type="submit" class="btn btn-primary btn-sm">Submit</button>
+                                        <button type="submit" class="btn btn-olive">Submit</button>
                                     </div>
                         </form>
                     </div>

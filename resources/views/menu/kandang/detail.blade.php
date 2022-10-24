@@ -67,11 +67,11 @@
 <div class="container-fluid">
     <div class="row">
         <div class="col-12">
-            <div class="card">
+            <div class="card  card-olive card-outline">
                 <div class="card-header">
-                  <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#addModalpopulasi">
+                  <button type="button" class="btn btn-olive btn-sm" data-toggle="modal" data-target="#addModalpopulasi">
                     <i class="fa fa-plus"></i>  
-                    Data
+                    Tambah Ayam
                   </button>
                    @foreach ($info as $pop )
                   <a href="/kandang/populasiexport/{{$pop->id}}" class="btn btn-success btn-sm" style="float: right;">
@@ -90,7 +90,7 @@
                 <div class="table-responsive">
                 <table id="populasi-datatable" class="table table-striped table-bordered" style="width:100%">
                     <thead>
-                        <tr>
+                        <tr class="table-secondary">
                             <th>No</th>
                             <th>Kode Ayam</th>
                             <th>Umur</th>
@@ -106,8 +106,7 @@
                           <td>{{$no++}}</td>
                             <td>{{$data->kd_ayam}}</td>
                             <td>{{\Carbon\Carbon::parse($data->tgl_tetas)->diffInDays()}} Hari</td>
-                            <td class="text text-center">{!! QrCode::size(50)->generate($data->id); !!}</td>
-                            {{-- <td class="text text-center">{!! QrCode::size(50)->generate(Crypt::encrypt($data->id)); !!}</td> --}}
+                            <td class="text text-center">{!! QrCode::size(50)->generate(Crypt::encrypt($data->id)); !!}</td>
                             <td class="text text-center">
                               @if ($data->status == 'produktif')
                               <span class="badge bg-success" >produktif</span>
@@ -266,7 +265,7 @@
                           <th>Kode Ayam : {{ $detail->kd_ayam}}</th>
                       </tr>
                       <tr>
-                          <th class="text-center" colspan="2">{!! QrCode::size(150)->generate($detail->id); !!}</th>
+                          <th class="text-center" colspan="2">{!! QrCode::size(150)->generate(Crypt::encrypt($detail->id)); !!}</th>
                       </tr>
                     </table>
                         </form>

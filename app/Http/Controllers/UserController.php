@@ -17,7 +17,7 @@ class UserController extends Controller
         
         $role = Role::all();
 
-        return view('admin.user.index', compact('user', 'role'));
+        return view('menu.user.index', compact('user', 'role'));
     }
     public function create(Request $request)
     {
@@ -84,7 +84,7 @@ class UserController extends Controller
                             ->select('users.*', 'role.role')
                             ->onlyTrashed()
                             ->get();
-    	return view('admin.user.trash', compact('user_trash'));
+    	return view('menu.user.trash', compact('user_trash'));
     }
 
     public function restore($id)

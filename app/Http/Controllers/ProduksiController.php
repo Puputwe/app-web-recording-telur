@@ -11,6 +11,8 @@ use App\Models\Populasi;
 use App\Models\Kandang;
 use App\Models\Produksi;
 use App\Models\User;
+use Carbon\Carbon;
+use Illuminate\Support\Facades\Crypt;
 use Str;
 Use Alert;
 use DB;
@@ -31,22 +33,89 @@ class ProduksiController extends Controller
 
         $populasi = Populasi::where('status', '=', 'produktif')->get();
 
-        return view('admin.produksi.index', compact('produksi', 'populasi', 'kandang')); 
+        return view('menu.produksi.index', compact('produksi', 'populasi', 'kandang')); 
 
     }
 
     public function store(Request $request)
     {
+        $date = date('Y-m-d');
+        
         $produksi = new Produksi;
-        $produksi->id_users  = $request->input('id_users');
-        $produksi->id_populasi  = $request->input('id_populasi');
+        $produksi->id_users    = $request->input('id_users');
+        $produksi->id_populasi = $request->input('id_populasi');
         $produksi->id_kandang  = $request->input('id_kandang');
-        $produksi->tgl_produksi = $request->input('tgl_produksi');
         $produksi->jml_telur   = $request->input('jml_telur');
         $produksi->keterangan  = $request->input('keterangan');
+        $produksi->tgl_produksi = $date;
         $produksi->save();
 
         return redirect('/produksi')->with('toast_success', 'Data berhasil ditambahkan!');      
+    }
+
+    public function store_all(Request $request)
+    {
+
+        $id_users    = $request->id_users;
+        $id_populasi = $request->id_populasi;
+        $id_kandang  = $request->id_kandang;
+        $jml_telur   = $request->jml_telur;
+
+        for ($i=0; $i < count($id_populasi); $i++) {
+                $data = [
+                   'id_users'  => $id_users[$i],
+                   'id_populasi'  => $id_populasi[$i],
+                   'id_kandang'   => $id_kandang[$i],
+                   'jml_telur'    => $jml_telur[$i],
+                ];
+                DB::table('produksi')->insert($data);
+        }
+       
+        return redirect('/produksi')->with('toast_success', 'Data berhasil ditambahkan!');      
+    }
+
+    public function qrScannerAyam(){
+
+        $kandang = Kandang::where('status', '=', 'aktif')->get();
+
+        return view('menu.produksi.qrscanner', compact('kandang'));
+    }
+
+    public function qrScannerKandang(){
+
+        $kandang = Kandang::where('status', '=', 'aktif')->get();
+
+        return view('menu.produksi.qr_scanner', compact('kandang'));
+    }
+
+    public function form_ayam($id)
+    {
+        $enkripsi= Crypt::decrypt($id);
+        
+        $populasi = Populasi::where('id', $enkripsi)->first();
+
+        $total_telur = Produksi::where('id_populasi', $enkripsi)->sum('jml_telur');
+        if($populasi){
+            return view('menu.produksi.add_produksi', compact('populasi', 'total_telur'));  
+          }else{
+            return back()->with('warning', 'Qr Code tidak terdaftar!');  
+          }
+    }
+
+    public function form_produksi($id)
+    {
+        $enkripsi = Crypt::decrypt($id);
+        
+        $get_kandang    = Kandang::where('id', $enkripsi)->select('kd_kandang')->get();
+        $populasi = Populasi::where('id_kandang', $enkripsi)->where('status', '=', 'produktif')->get();
+
+        $kandang = Kandang::where('id', $enkripsi)->first();
+
+        if($kandang){
+            return view('menu.produksi.produksi', compact('kandang', 'get_kandang', 'populasi'));  
+          }else{
+            return back()->with('warning', 'Maaf, kode QR tidak terdaftar!');  
+          }
     }
 
     public function delete($id)
@@ -65,7 +134,7 @@ class ProduksiController extends Controller
                             ->select('produksi.*', 'kandang.kd_kandang', 'populasi.kd_ayam')
                             ->onlyTrashed()
                             ->get();
-    	return view('admin.produksi.trash', compact('produksi_trash'));
+    	return view('menu.produksi.trash', compact('produksi_trash'));
     }
 
     public function restore($id)

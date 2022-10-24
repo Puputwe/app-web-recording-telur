@@ -11,7 +11,7 @@
             <div class="card">
                 <div class="card-header">
                     <h3 class="card-title">
-                      <a href="/stok-pakan/create" class="btn btn-primary btn-sm"><i class="fa fa-plus"></i>Tambah Data</a>
+                      <a href="/stok-pakan/create" class="btn btn-olive btn-sm"><i class="fa fa-plus"></i>Tambah Stok</a>
                  </div>
                 <div class="card-body">  
                 <div class="table-responsive"> 

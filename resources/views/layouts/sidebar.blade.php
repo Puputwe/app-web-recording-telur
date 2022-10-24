@@ -10,6 +10,7 @@
   <div class="sidebar">
 
     <!-- Sidebar Menu -->
+    @if(auth()->user()->role_id == 1)
     <nav class="mt-2">
       <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
         <!-- Add icons to the links using the .nav-icon class
@@ -23,12 +24,6 @@
           </a>
         </li>
         <li class="nav-header">Main</li>
-        <li class="nav-item">
-          <a href="{{ route('kandang') }}" class="nav-link">
-            <i class="nav-icon fas fa-cubes"></i>
-            <p>Kandang</p>
-          </a>
-        </li>
         <li class="nav-item">
           <a href="{{ route('produksi') }}" class="nav-link">
             <i class="nav-icon fas fa-mobile"></i>
@@ -74,17 +69,17 @@
               </a>
             </li> --}}
             <li class="nav-item">
+              <a href="{{ route('kandang') }}" class="nav-link">
+                <i class="far nav-icon"></i>
+                <p>Kandang</p>
+              </a>
+            </li>
+            <li class="nav-item">
               <a href="{{ route('pakan') }}" class="nav-link">
                 <i class="far nav-icon"></i>
                 <p>Pakan</p>
               </a>
             </li>
-          <li class="nav-item">
-          <a href="{{ route('stok-pakan') }}" class="nav-link">
-            <i class="far nav-icon"></i>
-            <p>Stok Pakan</p>
-          </a>
-        </li>
         {{-- <li class="nav-item">
           <a href="{{ route('role') }}" class="nav-link">
             <i class="far nav-icon"></i>
@@ -165,6 +160,48 @@
           </ul>
         </li>
     </nav>
+    @else
+    <nav class="mt-2">
+      <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+        <!-- Add icons to the links using the .nav-icon class
+             with font-awesome or any other icon font library -->
+        <li class="nav-item menu-open">
+          <a href="{{ route('dashboard') }}" class="nav-link active">
+            <i class="nav-icon fas fa-home"></i>
+            <p>
+              Dashboard
+            </p>
+          </a>
+        </li>
+        <li class="nav-header">Main</li>
+        <li class="nav-item">
+          <a href="{{ route('produksi') }}" class="nav-link">
+            <i class="nav-icon fas fa-mobile"></i>
+            <p>Produksi</p>
+          </a>
+        </li>
+        
+        <li class="nav-item">
+          <a href="{{ route('recording') }}" class="nav-link">
+            <i class="nav-icon fas fa-file"></i>
+            <p>Recording</p>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a href="{{ route('stok-pakan') }}" class="nav-link">
+            <i class="nav-icon fas fa-cubes"></i>
+            <p>Stok Pakan</p>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a href="{{ route('grafik') }}" class="nav-link">
+            <i class="nav-icon fas fa-chart-line"></i>
+            <p>Grafik</p>
+          </a>
+        </li>
+        </li>
+    </nav>
+    @endif
     <!-- /.sidebar-menu -->
   </div>
   <!-- /.sidebar -->

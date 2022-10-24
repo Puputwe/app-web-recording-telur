@@ -14,7 +14,7 @@ class PakanController extends Controller
     {
         $pakan = Pakan::all();
         
-        return view('admin.pakan.index', compact('pakan'));
+        return view('menu.pakan.index', compact('pakan'));
     }
 
     public function store(Request $request)
@@ -65,7 +65,7 @@ class PakanController extends Controller
     public function trash()
     {
     	$pakan_trash = Pakan::onlyTrashed()->get();
-    	return view('admin.pakan.trash', compact('pakan_trash'));
+    	return view('menu.pakan.trash', compact('pakan_trash'));
     }
 
     public function restore($id)

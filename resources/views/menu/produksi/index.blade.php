@@ -8,52 +8,87 @@
 <div class="container-fluid">
     <div class="row">
         <div class="col-12">
-            <div class="card">
+            <div class="card card-olive card-outline">
                 <div class="card-header">
                     <h3 class="card-title">
-                    <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#addModalproduksi">
+                      @if(auth()->user()->role_id == 2)
+                      <a href="https://puputwe.github.io/scan-kode-ayam.github.io/" class="btn btn-primary btn-sm" style="float: left;">
+                        <i class="fa fa-qrcode"></i> Ayam
+                      </a>
+                      <a href="https://puputwe.github.io/scan-kode-kandang.github.io/" class="btn btn-danger btn-sm" style="float: left; margin-left: 4px;">
+                        <i class="fa fa-qrcode"></i> Kandang
+                      </a>
+                      @else
+                      <h3 class="text text-right">
+                        <a href="/produksi/produksi_export" class="btn btn-success btn-sm" style="float: right;">
+                          Export 
+                        </a>
+                        <button type="button" class="btn btn-success btn-sm" style="float: right; margin-right: 4px; margin-left: 4px;" data-toggle="modal" data-target="#importModalproduksi"> 
+                          Import
+                        </button>
+                      @endif
+                    {{-- <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#addModalproduksi">
                       <i class="fa fa-plus"></i>  
                       Data
-                    </button>
-                    <h3 class="text text-right">
-                    <a href="/produksi/produksi_export" class="btn btn-success btn-sm" style="float: right;">
-                      Export 
-                    </a>
-                    <button type="button" class="btn btn-success btn-sm" style="float: right; margin-right: 4px; margin-left: 4px;" data-toggle="modal" data-target="#importModalproduksi"> 
-                      Import
-                    </button>
+                    </button> --}}
                  </div>
                 <div class="card-body">   
                 <div class="table-responsive">
-                <table id="produksi-datatable" class="table table-striped table-bordered" style="width:100%">
-                    <thead>
-                        <tr>
-                            <th>No</th>
-                            <th>Petugas</th>
-                            <th>Kode Ayam</th>
-                            <th>Tanggal Produksi</th>
-                            <th>Telur</th>
-                            <th>Keterangan</th>
-                            <th>Aksi</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                       @php $no=1; @endphp
-                        @foreach ($produksi as $data )
-                        <tr>
-                          <td>{{$no++}}</td>
-                            <td>{{$data->name}}</td>
-                            <td>{{$data->kd_ayam}}</td>
-                            <td>{{date('d-m-Y', strtotime($data->tgl_produksi))}}</td>
-                            <td>{{$data->jml_telur}} Butir</td>
-                            <td>{{$data->keterangan}}</td>
-                            <td>
-                            <a href="#" class="btn btn-danger btn-sm delete-in" produksi_id="{{$data->id}}"><i class="nav-icon fas fa-trash"></i> Hapus</a>
-                            </td>
-                        </tr>
-                            @endforeach
-                    </tbody>
-                  </table>
+                @if(auth()->user()->role_id == 2)
+                <table id="produksi-datatable" class="table table-bordered" style="width:100%">
+                  <thead>
+                      <tr class="table-secondary">
+                          <th>No</th>
+                          <th>Kode Ayam</th>
+                          <th>Tanggal Produksi</th>
+                          <th>Telur</th>
+                          <th>Keterangan</th>
+                      </tr>
+                  </thead>
+                  <tbody>
+                     @php $no=1; @endphp
+                      @foreach ($produksi as $data )
+                      <tr>
+                        <td>{{$no++}}</td>
+                          <td>{{$data->kd_ayam}}</td>
+                          <td>{{date('d-m-Y', strtotime($data->tgl_produksi))}}</td>
+                          <td>{{$data->jml_telur}} Butir</td>
+                          <td>{{$data->keterangan}}</td>
+                      </tr>
+                          @endforeach
+                  </tbody>
+                </table>
+                @else
+                <table id="produksi-datatable" class="table table-bordered" style="width:100%">
+                  <thead>
+                      <tr class="table-secondary">
+                          <th>No</th>
+                          <th>Petugas</th>
+                          <th>Kode Ayam</th>
+                          <th>Tanggal Produksi</th>
+                          <th>Telur</th>
+                          <th>Keterangan</th>
+                          <th>Aksi</th>
+                      </tr>
+                  </thead>
+                  <tbody>
+                     @php $no=1; @endphp
+                      @foreach ($produksi as $data )
+                      <tr>
+                        <td>{{$no++}}</td>
+                          <td>{{$data->name}}</td>
+                          <td>{{$data->kd_ayam}}</td>
+                          <td>{{date('d-m-Y', strtotime($data->tgl_produksi))}}</td>
+                          <td>{{$data->jml_telur}} Butir</td>
+                          <td>{{$data->keterangan}}</td>
+                          <td>
+                          <a href="#" class="btn btn-danger btn-sm delete-in" produksi_id="{{$data->id}}"><i class="nav-icon fas fa-trash"></i> Hapus</a>
+                          </td>
+                      </tr>
+                          @endforeach
+                  </tbody>
+                </table>
+                @endif
                 </div>
               </div>
 

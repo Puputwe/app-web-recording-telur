@@ -189,7 +189,7 @@
 
         <div class="section-title">
           <h2>GALERY</h2>
-          <p>Galeri kegiatan kelompok wanita tani “Kembang Wono”</p>
+          <h3>Galeri kegiatan kelompok wanita tani “Kembang Wono”</h3>
         </div>
 
         <div class="row portfolio-container">
@@ -214,6 +214,30 @@
 
   <!-- ======= Footer ======= -->
   <footer id="footer">
+    <div class="footer-top">
+      <div class="container">
+        <div class="row">
+          
+          <div class="col-md-12 center footer-contact">
+              <div class="card card-5">
+                  <div class="card-body">
+                    <img src="{{ asset('assets/dist/img/LogoUNDIP.png') }}" class="mx-auto d-block" width="100px" height="120px"/><br>
+                    <h6 class="text text-center">Pengembangan Aplikasi Recording Telur Ayam Berbasis Web pada Kelompok Wanita Tani “Kembang Wono” </h6><br>
+                    <h6 class="text text-center">
+                      <strong>Puput Werdiningsih /  21120118120012</strong><br>
+                    </h6><br>
+                    <h6  class="text text-center">Departement Teknik Komputer</h6>
+                    <h6  class="text text-center">Universitas Diponegoro</h6>
+                    <h6  class="text text-center">2022</h6>
+                  </div>
+              </div>
+             
+          </div>
+          
+        </div>
+      </div>
+    </div>
+
     <div class="container d-md-flex py-3">
       <div class="me-md-auto text-center text-md-start">
         <div class="copyright">

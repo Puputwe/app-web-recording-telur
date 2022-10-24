@@ -25,33 +25,17 @@
  @stack('custom-css')
 
  <!-- Theme style -->
- <link rel="stylesheet" href="{{ asset('assets/dist/css/adminlte.min.css') }}">
+ <link rel="stylesheet" href="{{ asset('assets/css/style.css') }}">
 
  
 </head>
 
 <body class="hold-transition layout-top-nav">
 <div class="wrapper">
-    @include('layouts.nav-user')
 
 <!-- Content Wrapper. Contains page content -->
-<div class="content-wrapper">
+<div class="page-wrapper bg-olive">
     <!-- Content Header (Page header) -->
-    <div class="content-header">
-      <div class="container-fluid">
-        <div class="row mb-2">
-          <div class="col-sm-6">
-            <h1 class="m-0">@yield('heading')</h1>
-          </div><!-- /.col -->
-          <div class="col-sm-6">
-            <ol class="breadcrumb float-sm-right">
-              <li class="breadcrumb-item"><a href="{{ url('/') }}"><i class="nav-icon fas fa-home"></i> &nbsp; Home</a></li>
-              @yield('page')
-              </ol>
-          </div><!-- /.col -->
-        </div><!-- /.row -->
-      </div><!-- /.container-fluid -->
-    </div>
     <!-- /.content-header -->
 
     <!-- Main content -->
@@ -61,8 +45,6 @@
     <!-- /.content -->
   </div>
   <!-- /.content-wrapper -->
-
-@include('layouts.footer')
 
 
 <!-- jQuery -->

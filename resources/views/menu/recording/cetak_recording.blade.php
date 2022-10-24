@@ -66,7 +66,7 @@
                         @else
                             <th>Periode</th>
                             <td>:</td>
-                            <td>All</td>
+                            <td>-</td>
                         @endif
                        <th>Total Pakan</th>
                        <td>:</td>

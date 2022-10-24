@@ -29,7 +29,7 @@ class PopulasiController extends Controller
         ->GroupBy(DB::raw("id_populasi", "asc"))
         ->get('telur');
 
-        return view('admin.populasi.index', compact('populasi', 'kandang', 'total_telur')); 
+        return view('menu.populasi.index', compact('populasi', 'kandang', 'total_telur')); 
 
     }
     
@@ -86,7 +86,7 @@ class PopulasiController extends Controller
                             ->select('populasi.*', 'kandang.kd_kandang')
                             ->onlyTrashed()
                             ->get();
-    	return view('admin.populasi.trash', compact('populasi_trash'));
+    	return view('menu.populasi.trash', compact('populasi_trash'));
     }
 
     public function restore($id)

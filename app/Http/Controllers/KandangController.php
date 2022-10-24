@@ -21,7 +21,7 @@ class KandangController extends Controller
     {
         $kandang = Kandang::all();
 
-        return view('admin.kandang.index', compact('kandang')); 
+        return view('menu.kandang.index', compact('kandang')); 
     }
     
     public function store(Request $request)
@@ -72,7 +72,7 @@ class KandangController extends Controller
     public function trash()
     {
     	$kandang_trash = Kandang::onlyTrashed()->get();
-    	return view('admin.kandang.trash', compact('kandang_trash'));
+    	return view('menu.kandang.trash', compact('kandang_trash'));
     }
 
     public function restore($id)
@@ -129,7 +129,7 @@ class KandangController extends Controller
         $telur = Produksi::where('id_kandang', $id)->sum('jml_telur');
         $total_telur = Produksi::where('id_populasi', $id)->sum('jml_telur');
  
-        return view('admin.kandang.detail', compact('kandang', 'populasi', 'info', 'produktif', 'afkir', 'mati', 'telur', 'total_telur')); 
+        return view('menu.kandang.detail', compact('kandang', 'populasi', 'info', 'produktif', 'afkir', 'mati', 'telur', 'total_telur')); 
 
     }
 
@@ -148,6 +148,6 @@ class KandangController extends Controller
         $telur = Produksi::where('id_kandang', $id)->sum('jml_telur');
 
 
-        return view('admin.kandang.cetak_populasi', compact('populasi', 'info', 'produktif', 'afkir', 'mati', 'telur'));
+        return view('menu.kandang.cetak_populasi', compact('populasi', 'info', 'produktif', 'afkir', 'mati', 'telur'));
     }
 }

@@ -17,8 +17,6 @@ class DashboardController extends Controller
 {
     public function index(){
 
-        if (Auth::user()->role_id == '1') 
-        {     
             $populasi = Populasi::where('status', '=', 'produktif')->count();
 
             $pakan = Pakan::select('stok')->sum('stok');
@@ -42,33 +40,6 @@ class DashboardController extends Controller
             ->pluck('jml_telur');
 
 
-            return view('admin.dashboard', compact('telur', 'hari','populasi', 'pakan_keluar', 'produktif', 'afkir', 'mati', 'pakan', 'produksi', 'telur_today'));
-        } 
-        elseif (Auth::user()->role_id == '2') 
-        { 
-            $populasi = Populasi::where('status', '=', 'produktif')->count();
-
-            $pakan = Pakan::select('stok')->sum('stok');
-
-            $produksi = Produksi::sum('jml_telur');
-
-            $date = date('Y-m-d');
-            $telur_today = Produksi::where('tgl_produksi', '=', $date)->sum('jml_telur');
-
-            $produktif = Populasi::where('status', '=', 'produktif')->get()->count();
-            $afkir = Populasi::where('status', '=', 'afkir')->get()->count();
-            $mati = Populasi::where('status', '=', 'mati')->get()->count();
-            $pakan_keluar = Recording::sum('jml_pakan');
-
-            $hari = Produksi::select(DB::raw("DATE(tgl_produksi) as date"))
-            ->GroupBy(DB::raw("DATE(tgl_produksi)"))
-            ->pluck('date');
-            
-            $telur = Produksi::select(DB::raw("CAST(SUM(jml_telur) as int) as jml_telur"))
-            ->GroupBy(DB::raw("DATE(tgl_produksi)"))
-            ->pluck('jml_telur');
-
-        return view('user.dashboard', compact('telur', 'hari','populasi', 'pakan_keluar', 'produktif', 'afkir', 'mati', 'pakan', 'produksi', 'telur_today'));
-        }
+            return view('dashboard', compact('telur', 'hari','populasi', 'pakan_keluar', 'produktif', 'afkir', 'mati', 'pakan', 'produksi', 'telur_today'));
     }
 }

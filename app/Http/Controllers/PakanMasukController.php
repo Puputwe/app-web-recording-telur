@@ -17,14 +17,14 @@ class PakanMasukController extends Controller
                     ->select('pakan_masuk.*', 'pakan.nama', 'pakan.perusahaan')
                     ->get();
 
-        return view('admin.stok.index', compact('pakan_in'));
+        return view('menu.stok.index', compact('pakan_in'));
     }
 
     public function create(Request $request)
     {
         $pakan    = Pakan::all();
 
-        return view('admin.stok.add', compact('pakan'));
+        return view('menu.stok.add', compact('pakan'));
     }
 
     public function ajax(Request $request)
@@ -32,7 +32,7 @@ class PakanMasukController extends Controller
         $id_pakan['id_pakan'] = $request->id_pakan;
         $ajax_pakan           = Pakan::where('id', $id_pakan)->get();
 
-        return view('admin.stok.ajax', compact('ajax_pakan'));
+        return view('menu.stok.ajax', compact('ajax_pakan'));
     }
     
     public function store(Request $request)
@@ -68,7 +68,7 @@ class PakanMasukController extends Controller
                       ->select('pakan_masuk.*', 'pakan.nama', 'pakan.perusahaan')
                       ->onlyTrashed()
                       ->get();
-    	return view('admin.stok.trash', compact('stok_trash'));
+    	return view('menu.stok.trash', compact('stok_trash'));
     }
 
     public function restore(Request $request, $id, $p_id, $p_jml)
