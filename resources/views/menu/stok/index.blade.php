@@ -8,16 +8,16 @@
 <div class="container-fluid">
     <div class="row">
         <div class="col-12">
-            <div class="card">
+            <div class="card card-olive card-outline">
                 <div class="card-header">
                     <h3 class="card-title">
                       <a href="/stok-pakan/create" class="btn btn-olive btn-sm"><i class="fa fa-plus"></i>Tambah Stok</a>
                  </div>
                 <div class="card-body">  
                 <div class="table-responsive"> 
-                <table id="pakanIn-datatable" class="table table-striped table-bordered" style="width:100%">
+                <table id="pakanIn-datatable" class="table table-bordered" style="width:100%">
                     <thead>
-                        <tr>
+                        <tr class="table-secondary">
                             <th>No</th>
                             <th>Nama Pakan</th>
                             <th>Perusahaan</th>

@@ -219,7 +219,7 @@
         <div class="row">
           
           <div class="col-md-12 center footer-contact">
-              <div class="card card-5">
+              <div class="card-1 card-5">
                   <div class="card-body">
                     <img src="{{ asset('assets/dist/img/LogoUNDIP.png') }}" class="mx-auto d-block" width="100px" height="120px"/><br>
                     <h6 class="text text-center">Pengembangan Aplikasi Recording Telur Ayam Berbasis Web pada Kelompok Wanita Tani “Kembang Wono” </h6><br>

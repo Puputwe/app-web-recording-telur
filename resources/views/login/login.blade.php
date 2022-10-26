@@ -44,7 +44,7 @@
       <form action="{{ route('postlogin') }}" method="post">
         @csrf
         <div class="input-group mb-3">
-          <input type="email" class="form-control" name="email" placeholder="email" required>
+          <input type="email" class="form-control" value="{{ old('email') }}" name="email" placeholder="email" required>
           <div class="input-group-append">
             <div class="input-group-text">
               <span class="fas fa-envelope"></span>

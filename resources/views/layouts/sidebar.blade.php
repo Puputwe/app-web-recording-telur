@@ -42,7 +42,7 @@
             <li class="nav-item">
               <a href="{{ route('recording') }}" class="nav-link">
                 <i class="far nav-icon"></i>
-                <p>Catatan Harian</p>
+                <p>Recording Ayam</p>
               </a>
             </li>
             <li class="nav-item">

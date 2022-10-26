@@ -8,10 +8,10 @@
     <div class="container-fluid">
         <div class="row">
             <div class="col-12">
-                <div class="card">
+                <div class="card card-olive card-outline">
                     <div class="card-header">
                         <h3 class="card-title">
-                            <button type="button" class="btn btn-primary btn-sm" data-toggle="modal"
+                            <button type="button" class="btn btn-olive btn-sm" data-toggle="modal"
                                 data-target="#addModalpakan">
                                 <i class="fa fa-plus"></i>
                                 Tambah data
@@ -20,9 +20,9 @@
                     </div>
                     <div class="card-body">
                         <div class="table-responsive">
-                        <table id="pakan-datatable" class="table table-striped table-bordered" style="width:100%">
+                        <table id="pakan-datatable" class="table table-bordered" style="width:100%">
                             <thead>
-                                <tr>
+                                <tr class="table-secondary">
                                     <th>No</th>
                                     <th>Nama Pakan</th>
                                     <th>Jenis Pakan</th>

@@ -8,7 +8,7 @@
                  <div class="card-header">
                         <a href="{{ route('qrScanner') }}" class="btn btn-olive" style="float: left;"><i class="fa fa-arrow-left"></i></a>
                         <h5 class="text text-center">
-                            <b>Form Produksi Telur</b>
+                            <b>Detail Ayam</b>
                         </h5>
                     </div>
                 <div class="card-body">

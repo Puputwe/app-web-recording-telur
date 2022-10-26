@@ -1,23 +1,23 @@
 @extends('layouts.master')
-@section('heading', 'Populasi')
+@section('heading', 'Trash Populasi')
 @section('page')
-  <li class="breadcrumb-item active">Populasi</li>
+  <li class="breadcrumb-item active">Trash Populasi</li>
 @endsection
 
 @section('content')
 <div class="container-fluid">
     <div class="row">
         <div class="col-12">
-            <div class="card">
+            <div class="card card-olive card-outline">
                 <div class="card-header">
                     <h3 class="card-title">
                         <a href="/populasi/delete_all" class="btn btn-danger btn-sm"><i class="fa fa-trash"></i> Hapus Semua</a>
                  </div>
                 <div class="card-body">   
                   <div class="table-responsive">
-                <table id="populasi-datatable" class="table table-striped table-bordered" style="width:100%">
+                <table id="populasi-datatable" class="table table-bordered" style="width:100%">
                     <thead>
-                        <tr>
+                        <tr class="table-secondary">
                             <th>No</th>
                             <th>Kode Ayam</th>
                             <th>Umur</th>

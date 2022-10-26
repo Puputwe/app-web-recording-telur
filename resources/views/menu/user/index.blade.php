@@ -8,18 +8,18 @@
     <div class="container-fluid">
         <div class="row">
             <div class="col-12">
-                <div class="card">
+                <div class="card card-olive card-outline">
                     <div class="card-header">
                         <h3 class="card-title">
-                            <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#userModal">
-                                Tambah data
+                            <button type="button" class="btn btn-olive btn-sm" data-toggle="modal" data-target="#userModal">
+                                <i class="fa fa-plus"></i>  Tambah data
                             </button>
                     </div>
                     <div class="card-body">
                         <div class="table-responsive">
-                        <table id="user-datatable" class="table table-striped table-bordered" style="width:100%">
+                        <table id="user-datatable" class="table table-bordered" style="width:100%">
                             <thead>
-                                <tr>
+                                <tr class="table-secondary">
                                     <th>No</th>
                                     <th>Nama</th>
                                     <th>Email</th>
@@ -35,7 +35,8 @@
                                         <td>{{ $no++ }}</td>
                                         <td>{{ $item->name }}</td>
                                         <td>{{ $item->email }}</td>
-                                        <td class="text text-center">{{ $item->role }}</td>
+                                        <td class="text text-center"><span class="badge {{ ($item->role == 'admin') ? 'bg-danger' : 'bg-primary' }}">{{ ($item->role ==
+                                            'admin') ? 'admin' : 'anggota' }}</span></td>
                                         <td class="text text-center">
                                         @if($item->status == 'aktif')
                                             <a href="/user/{{$item->id}}/upStatus" class="btn btn-success btn-sm" user-id="{{$item->id}}">aktif</a>
@@ -44,10 +45,10 @@
                                         @endif
                                         </td>
                                         <td>
-                                            {{-- <button type="button" class="btn btn-warning btn-sm" data-toggle="modal" data-target="#editModaluser{{$item->id}}">
+                                            <button type="button" class="btn btn-warning btn-sm" data-toggle="modal" data-target="#editModaluser{{$item->id}}">
                                                 <i class="fa fa-edit"></i> 
                                                 Edit
-                                              </button> --}}
+                                              </button>
                                             <a href="#" class="btn btn-danger btn-sm delete" user-id="{{ $item->id }}"><i class="nav-icon fas fa-trash"></i>
                                                 Hapus</a>
                                         </td>

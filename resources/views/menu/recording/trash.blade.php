@@ -1,23 +1,23 @@
 @extends('layouts.master')
-@section('heading', 'Recording')
+@section('heading', 'Trash Recording')
 @section('page')
-  <li class="breadcrumb-item active">Data Recording</li>
+  <li class="breadcrumb-item active">Trash Recording</li>
 @endsection
 
 @section('content')
 <div class="container-fluid">
     <div class="row">
         <div class="col-12">
-            <div class="card">
+            <div class="card card-olive card-outline">
                 <div class="card-header">
                     <h3 class="card-title">
                       <a href="/recording/delete_all" class="btn btn-danger btn-sm"><i class="fa fa-trash"></i> Hapus Semua</a>
                  </div>
                 <div class="card-body"> 
                 <div class="table-responsive">
-                <table id="recording-datatable" class="table table-striped table-bordered tabel-sm" style="width:100%">
+                <table id="recording-datatable" class="table table-bordered tabel-sm" style="width:100%">
                     <thead>
-                        <tr>
+                        <tr class="table-secondary">
                             <th rowspan="2">Kandang</th>
                             <th rowspan="2">Tanggal</th>
                             <th class="text-center" colspan="3">Populasi</th>
@@ -27,7 +27,7 @@
                             <th rowspan="2">FCR</th>
                             <th rowspan="2">Aksi</th>
                         </tr>
-                        <tr>
+                        <tr class="table-secondary"> 
                             <th>Hidup</th>
                             <th>Afkir</th>
                             <th>Mati</th>

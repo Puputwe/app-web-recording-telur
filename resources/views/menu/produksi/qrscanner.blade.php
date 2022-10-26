@@ -8,6 +8,7 @@
             <div class="card card-15">
               <div class="card-header">
                 <a href="{{ route('produksi') }}" class="btn btn-olive" style="float: left;"><i class="fa fa-arrow-left"></i></a>
+                <h5 class="text text-center">Scan Kode Ayam</h5>
             </div>
                 <div class="card-body">
                  <video id="result"  data-app-id="CAMERATAG_APPLICATION_UUID" width="100%"></video>
