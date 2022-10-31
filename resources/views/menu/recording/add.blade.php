@@ -9,7 +9,7 @@
                     <div class="card-header">
                         <a href="{{ route('recording') }}" class="btn btn-olive" style="float: left;"><i class="fa fa-arrow-left"></i></a>
                         <h3 class="text text-center">
-                            <b>Form Catatan Harian</b>
+                            <b>Form Recording</b>
                         </h3>
                     </div>
                         <form action="/recording/store" enctype="multipart/form-data" method="POST">
