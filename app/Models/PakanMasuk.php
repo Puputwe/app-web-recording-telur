@@ -15,7 +15,7 @@ class PakanMasuk extends Model
     
     protected $dates = ['deleted_at'];
     
-    protected $table = 'pakan_masuk';
+    protected $table = 'stok';
     
     protected $fillable = [ 'id_pakan',
                             'jml_pakan', 

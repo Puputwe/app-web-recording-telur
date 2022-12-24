@@ -95,7 +95,7 @@
                         <td>{{$data->kd_ayam}}</td>
                         <td>{{\Carbon\Carbon::parse($data->tgl_tetas)->diffInDays()}} Hari</td>
                         <td class="text text-center">{!! QrCode::size(100)->generate(Crypt::encrypt($data->id)); !!}</td>
-                        <td class="text text-center">{{$data->status}}</td>
+                        <td class="text text-center">{{$data->status_aym}}</td>
                     </tr>
                     @endforeach
                 </tbody>

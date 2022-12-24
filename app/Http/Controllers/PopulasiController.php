@@ -45,7 +45,7 @@ class PopulasiController extends Controller
         $populasi->id_kandang    = $request->input('id_kandang');
         $populasi->kd_ayam       = $request->input('kd_ayam');
         $populasi->tgl_tetas     = $request->input('tgl_tetas');
-        $populasi->status        = $request->input('status');
+        $populasi->status_aym        = $request->input('status_aym');
         $populasi->save();
 
         return back()->with('toast_success', 'Data berhasil ditambahkan!');
@@ -65,7 +65,7 @@ class PopulasiController extends Controller
         $populasi->kd_ayam       = $request->input('kd_ayam');
         $populasi->id_kandang    = $request->input('id_kandang');
         $populasi->tgl_tetas     = $request->input('tgl_tetas');
-        $populasi->status        = $request->input('status');
+        $populasi->status_aym        = $request->input('status_aym');
         $populasi->update();
 
         return back()->with('toast_info', 'Data berhasil diupdate!');

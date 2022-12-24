@@ -123,9 +123,9 @@ class KandangController extends Controller
         $kandang = Kandang::where('id', $id)->where('status', '=', 'aktif')->get();
         $info = Kandang::where('id', $id)->get();
         $populasi = Populasi::OrderBy('id', 'asc')->where('id_kandang',  $id)->get();
-        $produktif = Populasi::where('id_kandang', $id)->where('status', '=', 'produktif')->get()->count();
-        $afkir = Populasi::where('id_kandang', $id)->where('status', '=', 'afkir')->get()->count();
-        $mati = Populasi::where('id_kandang', $id)->where('status', '=', 'mati')->get()->count();
+        $produktif = Populasi::where('id_kandang', $id)->where('status_aym', '=', 'produktif')->get()->count();
+        $afkir = Populasi::where('id_kandang', $id)->where('status_aym', '=', 'afkir')->get()->count();
+        $mati = Populasi::where('id_kandang', $id)->where('status_aym', '=', 'mati')->get()->count();
         $telur = Produksi::where('id_kandang', $id)->sum('jml_telur');
         $total_telur = Produksi::where('id_populasi', $id)->sum('jml_telur');
  
@@ -142,9 +142,9 @@ class KandangController extends Controller
     {
         $info = Kandang::where('id', $id)->get();
         $populasi = Populasi::OrderBy('kd_ayam', 'asc')->where('id_kandang',  $id)->get();
-        $produktif = Populasi::where('id_kandang', $id)->where('status', '=', 'produktif')->get()->count();
-        $afkir = Populasi::where('id_kandang', $id)->where('status', '=', 'afkir')->get()->count();
-        $mati = Populasi::where('id_kandang', $id)->where('status', '=', 'mati')->get()->count();
+        $produktif = Populasi::where('id_kandang', $id)->where('status_aym', '=', 'produktif')->get()->count();
+        $afkir = Populasi::where('id_kandang', $id)->where('status_aym', '=', 'afkir')->get()->count();
+        $mati = Populasi::where('id_kandang', $id)->where('status_aym', '=', 'mati')->get()->count();
         $telur = Produksi::where('id_kandang', $id)->sum('jml_telur');
 
 

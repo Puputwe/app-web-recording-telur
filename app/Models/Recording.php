@@ -14,15 +14,15 @@ class Recording extends Model
     
     protected $dates = ['deleted_at'];
     
-    protected $table = 'data_recording';
+    protected $table = 'recording';
     
     protected $fillable = [ 'id_users',
                             'id_kandang', 
                             'id_pakan',
                             'tanggal',
-                            'jml_telur',
+                            'tot_telur',
                             'berat_telur',
-                            'jml_pakan',
+                            'tot_pakan',
                             'ayam_hidup',
                             'ayam_afkir',
                             'ayam_mati',

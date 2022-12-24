@@ -23,11 +23,11 @@
                             <td>{{$populasi->kd_ayam}}</td>
                             <td>{{\Carbon\Carbon::parse($populasi->tgl_tetas)->diffInDays()}} Hari</td>
                             <td>{{$total_telur}} Butir</td>
-                            <td> @if ($populasi->status == 'produktif')
+                            <td> @if ($populasi->status_aym == 'produktif')
                                 <span >Produktif</span>
-                                @elseif ($populasi->status == 'afkir')
+                                @elseif ($populasi->status_aym == 'afkir')
                                     <span >Afkir</span>
-                                @elseif ($populasi->status == 'mati')
+                                @elseif ($populasi->status_aym == 'mati')
                                     <span >Mati</span>                                     
                                 @endif  </td>
                         </tr>

@@ -19,7 +19,7 @@ class Populasi extends Model
     protected $fillable = [ 'id_kandang',
                             'kd_ayam',
                             'tgl_tetas',
-                            'status'];
+                            'status_aym'];
 
     public function kandang(){
         return $this->belongsTo(Kandang::class);

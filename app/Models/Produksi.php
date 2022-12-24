@@ -16,8 +16,7 @@ class Produksi extends Model
 
     protected $table = 'produksi';
     
-    protected $fillable = [ 'id_populasi', 
-                            'id_user',
+    protected $fillable = [ 'id_populasi',
                             'id_kandang',
                             'tgl_produksi', 
                             'jml_telur', 

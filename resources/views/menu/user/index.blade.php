@@ -45,10 +45,10 @@
                                         @endif
                                         </td>
                                         <td>
-                                            <button type="button" class="btn btn-warning btn-sm" data-toggle="modal" data-target="#editModaluser{{$item->id}}">
+                                            {{-- <button type="button" class="btn btn-warning btn-sm" data-toggle="modal" data-target="#editModaluser{{$item->id}}">
                                                 <i class="fa fa-edit"></i> 
                                                 Edit
-                                              </button>
+                                              </button> --}}
                                             <a href="#" class="btn btn-danger btn-sm delete" user-id="{{ $item->id }}"><i class="nav-icon fas fa-trash"></i>
                                                 Hapus</a>
                                         </td>

@@ -82,14 +82,14 @@
                             <th class="text-center" colspan="3">Populasi</th>
                             <th class="text-center" colspan="2">Pakan</th>
                             <th class="text-center" colspan="2">Produksi Telur</th>
-                            <th rowspan="2">HD</th>
+                            <th rowspan="2">HD (%)</th>
                             <th rowspan="2">FCR</th>
                         </tr>
                         <tr>
                             <th>Hidup</th>
                             <th>Afkir</th>
                             <th>Mati</th>
-                            <th>Jenis</th>
+                            <th>Nama</th>
                             <th>Total</th>
                             <th>Jumlah</th>
                             <th>Berat</th>
@@ -103,12 +103,12 @@
                             <td>{{$item->ayam_hidup}}</td>
                             <td>{{$item->ayam_afkir}}</td>
                             <td>{{$item->ayam_mati}}</td>
-                            <td>{{$item->jenis}}</td>
-                            <td>{{number_format($item->jml_pakan)}} Kg</td>
-                            <td>{{$item->jml_telur}} Butir</td>
+                            <td>{{$item->nama}}</td>
+                            <td>{{number_format($item->tot_pakan)}} Kg</td>
+                            <td>{{$item->tot_telur}} Butir</td>
                             <td>{{$item->berat_telur}} Kg</td>
-                            <td>{{number_format($item->hd)}} %</td>
-                            <td>{{number_format($item->fcr)}}</td>
+                            <td>{{$item->hd}}</td>
+                            <td>{{$item->fcr}}</td>
                         </tr>
                             @endforeach
                     </tbody>

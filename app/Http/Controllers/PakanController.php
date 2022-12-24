@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Pakan;
+use App\Models\JenisPakan;
 use Validator;
 
 date_default_timezone_set('Asia/Jakarta');
@@ -12,9 +13,13 @@ class PakanController extends Controller
 {
     public function index()
     {
-        $pakan = Pakan::all();
+        $pakan = Pakan::join('jenis_pakan', 'jenis_pakan.id', '=', 'pakan.id_jenis_pakan')
+        ->select('pakan.*', 'jenis_pakan.jenis')
+        ->get();
+
+        $jenis_pakan = JenisPakan::all();
         
-        return view('menu.pakan.index', compact('pakan'));
+        return view('menu.pakan.index', compact('pakan', 'jenis_pakan'));
     }
 
     public function store(Request $request)
@@ -25,13 +30,13 @@ class PakanController extends Controller
         ]);
 
         Pakan::create([
-            'nama'        => $request->nama,
-            'jenis'       => $request->jenis,
-            'perusahaan'  => $request->perusahaan,
-            'stok'        => $request->stok,
-            'keterangan'  => $request->keterangan,
-            'created_at'  => date('Y-m-d H:i:s'),
-            'updated_at'  => date('Y-m-d H:i:s'),
+            'nama'            => $request->nama,
+            'id_jenis_pakan'  => $request->id_jenis_pakan,
+            'perusahaan'      => $request->perusahaan,
+            'stok'            => $request->stok,
+            'keterangan'      => $request->keterangan,
+            'created_at'      => date('Y-m-d H:i:s'),
+            'updated_at'      => date('Y-m-d H:i:s'),
         ]);
         
         return redirect('/pakan')->with('toast_success', 'Data berhasil ditambahkan!');
@@ -42,12 +47,12 @@ class PakanController extends Controller
       
         $pakan = Pakan::find($id);
         
-         $pakan->nama       = $request->nama;
-         $pakan->jenis      = $request->jenis;
-         $pakan->perusahaan = $request->perusahaan;
-         $pakan->stok       = $request->stok;
-         $pakan->keterangan = $request->keterangan;
-         $pakan->updated_at = date('Y-m-d H:i:s');
+         $pakan->nama           = $request->nama;
+         $pakan->id_jenis_pakan = $request->id_jenis_pakan;
+         $pakan->perusahaan     = $request->perusahaan;
+         $pakan->stok           = $request->stok;
+         $pakan->keterangan     = $request->keterangan;
+         $pakan->updated_at     = date('Y-m-d H:i:s');
 
          $pakan->save();
 

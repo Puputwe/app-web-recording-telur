@@ -77,7 +77,7 @@
                                     <div class="form-group col-lg-6">
                                         <label class="font-weight-bold text-small">Total Pakan<span class="text-olive ml-1">*</span></label>
                                         <div class="input-group mb-3">
-                                            <input type="text" name="jml_pakan" class="form-control" id="jml_pakan" placeholder="0" required>
+                                            <input type="text" name="tot_pakan" class="form-control" id="tot_pakan" placeholder="0" required>
                                             <div class="input-group-append">
                                                 <span class="input-group-text" id="basic-addon2">Kg</span>
                                             </div>
@@ -92,7 +92,7 @@
                                     <div class="form-group col-lg-6">
                                         <label class="font-weight-bold text-small">Jumlah Telur<span class="text-olive ml-1">*</span></label>
                                         <div class="input-group mb-3">
-                                            <input type="text" name="jml_telur" class="form-control" id="jml_telur" placeholder="0" required>
+                                            <input type="text" name="tot_telur" class="form-control" id="tot_telur" placeholder="0" required>
                                             <div class="input-group-append">
                                                 <span class="input-group-text" id="basic-addon2">Butir</span>
                                             </div>
@@ -127,22 +127,22 @@
             @section('footer')
             <script>
                 $(document).ready(function () {
-                    $("#ayam_hidup, #jml_telur").keyup(function (e) { 
-                        var jml_telur = $("#jml_telur").val();
+                    $("#ayam_hidup, #tot_telur").keyup(function (e) { 
+                        var tot_telur = $("#tot_telur").val();
                         var ayam_hidup = $("#ayam_hidup").val();
             
-                        var hd = (parseFloat(jml_telur) / parseFloat(ayam_hidup))*(100);
+                        var hd = (parseFloat(tot_telur) / parseFloat(ayam_hidup))*(100);
                         var hd = hd.toFixed(2);
                         $("#hd").val(hd);
             
                         document.getElementById("hd").innerHTML = hd;
                     });
 
-                    $("#jml_pakan, #berat_telur").keyup(function (e) { 
-                        var jml_pakan = $("#jml_pakan").val();
+                    $("#tot_pakan, #berat_telur").keyup(function (e) { 
+                        var tot_pakan = $("#tot_pakan").val();
                         var berat_telur = $("#berat_telur").val();
             
-                        var fcr = parseFloat(jml_pakan) / parseFloat(berat_telur);
+                        var fcr = parseFloat(tot_pakan) / parseFloat(berat_telur);
                         var fcr = fcr.toFixed(2);
                         $("#fcr").val(fcr);
 

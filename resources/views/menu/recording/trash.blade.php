@@ -46,13 +46,13 @@
                             <td>{{$data->ayam_afkir}}</td>
                             <td>{{$data->ayam_mati}}</td>
                             <td>{{$data->jenis}}</td>
-                            <td>{{number_format($data->jml_pakan)}} Kg</td>
-                            <td>{{$data->jml_telur}} Butir</td>
+                            <td>{{number_format($data->tot_pakan)}} Kg</td>
+                            <td>{{$data->tot_telur}} Butir</td>
                             <td>{{$data->berat_telur}} Kg</td>
                             <td>{{number_format($data->hd)}} %</td>
                             <td>{{number_format($data->fcr)}} Kg</td>
                             <td>
-                                <a href="/recording/{{$data->id}}/{{$data->id_pakan}}/{{$data->jml_pakan}}/restore" class="btn btn-success btn-sm">Restore</a>
+                                <a href="/recording/{{$data->id}}/{{$data->id_pakan}}/{{$data->tot_pakan}}/restore" class="btn btn-success btn-sm">Restore</a>
 								                <a href="/recording/delete_kill/{{$data->id}}" class="btn btn-danger btn-sm">Hapus Permanen</a>
                             </td>
                         </tr>

@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateDataRecordingTable extends Migration
+class CreateRecordingTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,20 +13,20 @@ class CreateDataRecordingTable extends Migration
      */
     public function up()
     {
-        Schema::create('data_recording', function (Blueprint $table) {
+        Schema::create('recording', function (Blueprint $table) {
             $table->id();
             $table->foreignId('id_users');
             $table->foreignId('id_kandang');
             $table->foreignId('id_pakan');
             $table->date('tanggal');
-            $table->integer('jml_telur');
-            $table->decimal('berat_telur');
-            $table->decimal('jml_pakan');
+            $table->integer('tot_telur');
+            $table->decimal('berat_telur', 8,2);
+            $table->decimal('tot_pakan', 8,2);
             $table->integer('ayam_hidup');
             $table->integer('ayam_afkir');
             $table->integer('ayam_mati');
-            $table->decimal('hd');
-            $table->decimal('fcr');
+            $table->decimal('hd', 8,2);
+            $table->decimal('fcr', 8,2);
             $table->timestamps();
 
             $table->foreign('id_users')->references('id')->on('users')->onDelete('cascade');
@@ -42,6 +42,6 @@ class CreateDataRecordingTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('data_recording');
+        Schema::dropIfExists('recording');
     }
 }

@@ -94,7 +94,7 @@
                 <div class="card-body"> 
                 <div class="table-responsive">
                 @if(auth()->user()->role_id == 2)
-                <table id="recording-datatable" class="table table-bordered tabel-sm" style="width:100%">
+                <table id="recording-datatable" class="table table-bordered table-sm" style="width:100%">
                   <thead>
                       <tr class="table-secondary">
                           <th rowspan="2">Kandang</th>
@@ -102,14 +102,14 @@
                           <th class="text-center" colspan="3">Populasi</th>
                           <th class="text-center" colspan="2">Pakan</th>
                           <th class="text-center" colspan="2">Produksi Telur</th>
-                          <th rowspan="2">HD</th>
+                          <th rowspan="2">HD (%)</th>
                           <th rowspan="2">FCR</th>
                       </tr>
                       <tr class="table-secondary">
                           <th>Hidup</th>
                           <th>Afkir</th>
                           <th>Mati</th>
-                          <th>Jenis</th>
+                          <th>Nama</th>
                           <th>Total</th>
                           <th>Jumlah</th>
                           <th>Berat</th>
@@ -123,18 +123,18 @@
                           <td>{{$data->ayam_hidup}}</td>
                           <td>{{$data->ayam_afkir}}</td>
                           <td>{{$data->ayam_mati}}</td>
-                          <td>{{$data->jenis}}</td>
-                          <td>{{number_format($data->jml_pakan)}} Kg</td>
-                          <td>{{$data->jml_telur}} Butir</td>
+                          <td>{{$data->nama}}</td>
+                          <td>{{number_format($data->tot_pakan)}} Kg</td>
+                          <td>{{$data->tot_telur}} Butir</td>
                           <td>{{$data->berat_telur}} Kg</td>
-                          <td>{{$data->hd}} %</td>
+                          <td>{{$data->hd}} </td>
                           <td>{{$data->fcr}}</td>
                       </tr>
                           @endforeach
                   </tbody>
               </table> 
                 @else
-                <table id="recording-datatable" class="table table-bordered tabel-sm" style="width:100%">
+                <table id="recording-datatable" class="table table-bordered table-sm" style="width:100%">
                   <thead>
                       <tr class="table-secondary">
                           <th rowspan="2">Petugas</th>
@@ -143,7 +143,7 @@
                           <th class="text-center" colspan="3">Populasi</th>
                           <th class="text-center" colspan="2">Pakan</th>
                           <th class="text-center" colspan="2">Produksi Telur</th>
-                          <th rowspan="2">HD</th>
+                          <th rowspan="2">HD (%)</th>
                           <th rowspan="2">FCR</th>
                           <th rowspan="2">Aksi</th>
                       </tr>
@@ -151,7 +151,7 @@
                           <th>Hidup</th>
                           <th>Afkir</th>
                           <th>Mati</th>
-                          <th>Jenis</th>
+                          <th>Nama</th>
                           <th>Total</th>
                           <th>Jumlah</th>
                           <th>Berat</th>
@@ -166,14 +166,14 @@
                           <td>{{$data->ayam_hidup}}</td>
                           <td>{{$data->ayam_afkir}}</td>
                           <td>{{$data->ayam_mati}}</td>
-                          <td>{{$data->jenis}}</td>
-                          <td>{{number_format($data->jml_pakan)}} Kg</td>
-                          <td>{{$data->jml_telur}} Butir</td>
+                          <td>{{$data->nama}}</td>
+                          <td>{{number_format($data->tot_pakan)}} Kg</td>
+                          <td>{{$data->tot_telur}} Butir</td>
                           <td>{{$data->berat_telur}} Kg</td>
-                          <td>{{$data->hd}} %</td>
+                          <td>{{$data->hd}}</td>
                           <td>{{$data->fcr}}</td>
                           <td>
-                            <a href="#" class="btn btn-danger btn-sm delete-out" pakanid="{{$data->id_pakan}}" pakanjml="{{$data->jml_pakan}}" recording-id="{{$data->id}}"><i class="nav-icon fas fa-trash"></i></a>
+                            <a href="#" class="btn btn-danger btn-sm delete-out" pakanid="{{$data->id_pakan}}" pakanjml="{{$data->tot_pakan}}" recording-id="{{$data->id}}"><i class="nav-icon fas fa-trash"></i></a>
                           </td>
                       </tr>
                           @endforeach

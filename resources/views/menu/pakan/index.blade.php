@@ -20,7 +20,7 @@
                     </div>
                     <div class="card-body">
                         <div class="table-responsive">
-                        <table id="pakan-datatable" class="table table-bordered" style="width:100%">
+                        <table id="pakan-datatable" class="table table-bordered table-sm" style="width:100%">
                             <thead>
                                 <tr class="table-secondary">
                                     <th>No</th>
@@ -83,11 +83,11 @@
                                             </div>
                                             <div class="form-group">
                                                 <label>Jenis Pakan</label>
-                                                    <select name="jenis" class="form-control" id="jenis" required>
+                                                    <select name="id_jenis_pakan" class="form-control" id="id_jenis_pakan" required>
                                                         <option value="">-- Pilih Jenis --</option>
-                                                        <option value="Starter" {{ old('jenis') == 'afkir' ? 'Starter' : '' }}>Starter</option>
-                                                        <option value="Grower" {{ old('jenis') == 'afkir' ? 'Grower' : '' }}>Grower</option>
-                                                        <option value="Layer" {{ old('jenis') == 'afkir' ? 'Layer' : '' }}>Layer</option>
+                                                        @foreach ($jenis_pakan as $k)
+                                                           <option value="{{ $k->id }}">{{ $k->jenis }}</option>
+                                                       @endforeach
                                                     </select>
                                                 </select>
                                             </div>
@@ -145,12 +145,12 @@
                                                     </div>
                                                     <div class="form-group col-lg-6">
                                                         <label  class="font-weight-bold text-small">Jenis<span class="text-olive ml-1">*</span></label>
-                                                        <select name="jenis" class="form-control" id="jenis" required>
-                                                            <option value="">-- Jenis Pakan --</option>
-                                                            <option {{ ($d->jenis) == 'Starter' ? 'selected' : '' }}  value="Starter">Starter</option>
-                                                            <option {{ ($d->jenis) == 'Grower' ? 'selected' : '' }}  value="Grower">Grower</option>
-                                                            <option {{ ($d->jenis) == 'Layer' ? 'selected' : '' }}  value="Layer">Layer</option>
-                                                        </select>
+                                                        <select name="id_jenis_pakan" class="form-control" id="id_jenis_pakan" required>
+                                                        <option value="{{ $d->id_jenis_pakan }}">{{$d->jenis}}</option>
+                                                        @foreach ($jenis_pakan as $k)
+                                                           <option value="{{ $k->id }}">{{ $k->jenis }}</option>
+                                                       @endforeach
+                                                    </select>
                                                     </div>
                                                     <div class="form-group col-lg-6">
                                                         <label class="font-weight-bold text-small">Nama Perusahaan<span class="text-olive ml-1">*</span></label>

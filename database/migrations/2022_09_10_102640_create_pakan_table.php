@@ -15,12 +15,14 @@ class CreatePakanTable extends Migration
     {
         Schema::create('pakan', function (Blueprint $table) {
             $table->id();
-            $table->string('nama')->unique();
-            $table->string('jenis');
-            $table->string('perusahaan');
-            $table->decimal('stok');
+            $table->foreignId('id_jenis_pakan');
+            $table->string('nama', 25)->unique();
+            $table->string('perusahaan', 25);
+            $table->decimal('stok', 8,2);
             $table->text('keterangan')->null();
             $table->timestamps();
+
+            $table->foreign('id_jenis_pakan')->references('id')->on('jenis_pakan')->onDelete('cascade');
         });
     }
 

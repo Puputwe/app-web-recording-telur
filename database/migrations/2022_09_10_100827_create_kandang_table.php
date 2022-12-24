@@ -15,8 +15,8 @@ class CreateKandangTable extends Migration
     {
         Schema::create('kandang', function (Blueprint $table) {
             $table->id();
-            $table->string('kd_kandang')->unique();
-            $table->string('status');
+            $table->string('kd_kandang', 25)->unique();
+            $table->string('status', 25);
             $table->date('tgl_chickin');
             $table->integer('kapasitas');
             $table->timestamps();

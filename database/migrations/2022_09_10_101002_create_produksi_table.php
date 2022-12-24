@@ -15,15 +15,13 @@ class CreateProduksiTable extends Migration
     {
         Schema::create('produksi', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('id_users');
             $table->foreignId('id_kandang');
             $table->foreignId('id_populasi');
-            $table->date('tgl_produksi');
+            $table->date('tgl_produksi')->current_timestamp();
             $table->integer('jml_telur');
-            $table->string('keterangan')->null();
+            $table->text('keterangan')->null();
             $table->timestamps();
 
-            $table->foreign('id_users')->references('id')->on('users')->onDelete('cascade');
             $table->foreign('id_populasi')->references('id')->on('populasi')->onDelete('cascade');
             $table->foreign('id_kandang')->references('id')->on('kandang')->onDelete('cascade');
         });

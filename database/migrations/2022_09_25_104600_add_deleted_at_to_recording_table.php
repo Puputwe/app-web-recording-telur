@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class AddDeletedAtToDataRecordingTable extends Migration
+class AddDeletedAtToRecordingTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,7 +13,7 @@ class AddDeletedAtToDataRecordingTable extends Migration
      */
     public function up()
     {
-        Schema::table('data_recording', function (Blueprint $table) {
+        Schema::table('recording', function (Blueprint $table) {
             $table->softDeletes();
         });
     }
@@ -25,7 +25,7 @@ class AddDeletedAtToDataRecordingTable extends Migration
      */
     public function down()
     {
-        Schema::table('data_recording', function (Blueprint $table) {
+        Schema::table('recording', function (Blueprint $table) {
             $table->dropSoftDeletes();
         });
     }

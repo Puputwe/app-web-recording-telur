@@ -12,6 +12,8 @@ use App\Http\Controllers\ProduksiController;
 use App\Http\Controllers\PakanController;
 use App\Http\Controllers\PakanMasukController;
 use App\Http\Controllers\RecordingController;
+use App\Http\Controllers\PasswordController;
+use App\Http\Controllers\ProfileController;
 
 // Route::get('/', function () {
 //     return redirect('/home');
@@ -38,6 +40,11 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/recording/cetak_recording', [RecordingController::class, 'cetak_recording'])->name('cetak_recording');
 
     Route::get('/recording/grafik', [RecordingController::class, 'grafik'])->name('grafik');
+
+    Route::get('/password', [PasswordController::class, 'edit'])->name('user.password.edit');
+    Route::patch('/password', [PasswordController::class, 'update'])->name('user.password.update');
+    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
+    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
 
 });
 

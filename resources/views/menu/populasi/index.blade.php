@@ -38,11 +38,11 @@
                             <td>{{\Carbon\Carbon::parse($data->tgl_tetas)->diffInDays()}} Hari</td>
                             <td class="text text-center">{!! QrCode::size(50)->generate($data->kd_ayam); !!}</td>
                             <td class="text text-center">
-                              @if ($data->status == 'produktif')
+                              @if ($data->status_aym == 'produktif')
                               <span class="badge bg-success" >produktif</span>
-                              @elseif ($data->status == 'afkir')
+                              @elseif ($data->status_aym == 'afkir')
                                   <span class="badge bg-danger">afkir</span>
-                              @elseif ($data->status == 'mati')
+                              @elseif ($data->status_aym == 'mati')
                                   <span class="badge bg-secondary">mati</span>                                     
                               @endif  
                             </td>
@@ -94,7 +94,7 @@
                               </div>
                               <div class="form-group">
                                   <label>Status</label>
-                                      <select name="status" class="form-control" id="status" required>
+                                      <select name="status_aym" class="form-control" id="status_aym" required>
                                           <option value="">-- Pilih Status --</option>
                                           <option value="produktif">Produktif</option>
                                           <option value="afkir">Afkir</option>
@@ -136,11 +136,11 @@
                                 </div>
                                 <div class="form-group">
                                     <label>Status</label>
-                                    <select name="status" class="form-control" id="status" required>
+                                    <select name="status_aym" class="form-control" id="status_aym" required>
                                         <option value="">-- Pilih Status --</option>
-                                        <option {{ ($edit->status) == 'produktif' ? 'selected' : '' }}  value="produktif">Produktif</option>
-                                        <option {{ ($edit->status) == 'afkir' ? 'selected' : '' }}  value="afkir">Afkir</option>
-                                        <option {{ ($edit->status) == 'mati' ? 'selected' : '' }}  value="mati">Mati</option>
+                                        <option {{ ($edit->status_aym) == 'produktif' ? 'selected' : '' }}  value="produktif">Produktif</option>
+                                        <option {{ ($edit->status_aym) == 'afkir' ? 'selected' : '' }}  value="afkir">Afkir</option>
+                                        <option {{ ($edit->status_aym) == 'mati' ? 'selected' : '' }}  value="mati">Mati</option>
                                     </select>
                                 </div>
                                 <div class="modal-footer">

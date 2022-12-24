@@ -17,7 +17,7 @@ class Pakan extends Model
     protected $table = 'pakan';
     
     protected $fillable = [ 'nama', 
-                            'jenis',
+                            'id_jenis_pakan',
                             'perusahaan',
                             'stok',
                             'keterangan'];
@@ -32,5 +32,9 @@ class Pakan extends Model
 
     public function recording(){
         return $this->hasMany(Recording::class);
+    }
+
+    public function jenis(){
+        return $this->belongsTo(JenisPakan::class);
     }
 }

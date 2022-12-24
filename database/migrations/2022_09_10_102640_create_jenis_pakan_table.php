@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class AddDeletedAtToPakanMasukTable extends Migration
+class CreateJenisPakanTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,8 +13,11 @@ class AddDeletedAtToPakanMasukTable extends Migration
      */
     public function up()
     {
-        Schema::table('pakan_masuk', function (Blueprint $table) {
-            $table->softDeletes();
+        Schema::create('jenis_pakan', function (Blueprint $table) {
+            $table->id();
+            $table->string('jenis', 25);
+            $table->timestamps();
+
         });
     }
 
@@ -25,8 +28,6 @@ class AddDeletedAtToPakanMasukTable extends Migration
      */
     public function down()
     {
-        Schema::table('pakan_masuk', function (Blueprint $table) {
-            $table->dropSoftDeletes();
-        });
+        Schema::dropIfExists('jenis_pakan');
     }
 }

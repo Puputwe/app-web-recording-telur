@@ -22,19 +22,19 @@ class RecordingController extends Controller
 {
     public function index(Request $request)
     {
-        $recording = Recording::join('kandang', 'kandang.id', '=', 'data_recording.id_kandang')
-                    ->join('pakan', 'pakan.id', '=', 'data_recording.id_pakan')
-                    ->join('users', 'users.id', '=', 'data_recording.id_users')
-                    ->select('data_recording.*', 'kandang.kd_kandang', 'pakan.nama', 'pakan.jenis', 'users.name')
+        $recording = Recording::join('kandang', 'kandang.id', '=', 'recording.id_kandang')
+                    ->join('pakan', 'pakan.id', '=', 'recording.id_pakan')
+                    ->join('users', 'users.id', '=', 'recording.id_users')
+                    ->select('recording.*', 'kandang.kd_kandang', 'pakan.nama', 'pakan.id_jenis_pakan', 'users.name')
                     ->get();
 
         $kandang = Kandang::where('status', '=', 'aktif')->get();
         $pakan   = Pakan::all();
         $id_kandang = $request->id_kandang;
-        $result = Recording::join('kandang', 'kandang.id', '=', 'data_recording.id_kandang')
-                  ->join('pakan', 'pakan.id', '=', 'data_recording.id_pakan')
-                  ->join('users', 'users.id', '=', 'data_recording.id_users')
-                  ->select('data_recording.*', 'kandang.kd_kandang', 'pakan.nama', 'pakan.jenis', 'users.name')
+        $result = Recording::join('kandang', 'kandang.id', '=', 'recording.id_kandang')
+                  ->join('pakan', 'pakan.id', '=', 'recording.id_pakan')
+                  ->join('users', 'users.id', '=', 'recording.id_users')
+                  ->select('recording.*', 'kandang.kd_kandang', 'pakan.nama', 'pakan.id_jenis_pakan', 'users.name')
                   ->where('id_kandang', 'LIKE', '%'.$id_kandang.'%')
                   ->get();
         
@@ -65,9 +65,9 @@ class RecordingController extends Controller
         $recording->id_kandang  = $request->input('id_kandang');
         $recording->id_pakan    = $request->input('id_pakan');
         $recording->tanggal     = $request->input('tanggal');
-        $recording->jml_telur   = $request->input('jml_telur');
+        $recording->tot_telur   = $request->input('tot_telur');
         $recording->berat_telur = $request->input('berat_telur');
-        $recording->jml_pakan   = $request->input('jml_pakan');
+        $recording->tot_pakan   = $request->input('tot_pakan');
         $recording->ayam_hidup  = $request->input('ayam_hidup');
         $recording->ayam_afkir  = $request->input('ayam_afkir');
         $recording->ayam_mati   = $request->input('ayam_mati');
@@ -76,7 +76,7 @@ class RecordingController extends Controller
         $recording->save();
         }
 
-        $pakan->stok -= $request->jml_pakan;
+        $pakan->stok -= $request->tot_pakan;
         $pakan->save();
 
         return redirect('/recording')->with('toast_success', 'Data berhasil ditambahkan!');
@@ -95,10 +95,10 @@ class RecordingController extends Controller
 
     public function trash()
     {
-    	$recording_trash = Recording::join('kandang', 'kandang.id', '=', 'data_recording.id_kandang')
-                            ->join('pakan', 'pakan.id', '=', 'data_recording.id_pakan')
-                            ->join('users', 'users.id', '=', 'data_recording.id_users')
-                            ->select('data_recording.*', 'kandang.kd_kandang', 'pakan.nama', 'pakan.jenis', 'users.name')
+    	$recording_trash = Recording::join('kandang', 'kandang.id', '=', 'recording.id_kandang')
+                            ->join('pakan', 'pakan.id', '=', 'recording.id_pakan')
+                            ->join('users', 'users.id', '=', 'recording.id_users')
+                            ->select('recording.*', 'kandang.kd_kandang', 'pakan.nama', 'pakan.id_jenis_pakan', 'users.name')
                             ->onlyTrashed()
                             ->get();
     	return view('menu.recording.trash', compact('recording_trash'));
@@ -146,10 +146,10 @@ class RecordingController extends Controller
 
     public function searchRecording(Request $request)
     {
-        $recording = Recording::join('kandang', 'kandang.id', '=', 'data_recording.id_kandang')
-                    ->join('pakan', 'pakan.id', '=', 'data_recording.id_pakan')
-                    ->join('users', 'users.id', '=', 'data_recording.id_users')
-                    ->select('data_recording.*', 'kandang.kd_kandang', 'pakan.nama', 'pakan.jenis', 'users.name')
+        $recording = Recording::join('kandang', 'kandang.id', '=', 'recording.id_kandang')
+                    ->join('pakan', 'pakan.id', '=', 'recording.id_pakan')
+                    ->join('users', 'users.id', '=', 'recording.id_users')
+                    ->select('recording.*', 'kandang.kd_kandang', 'pakan.nama', 'pakan.id_jenis_pakan', 'users.name')
                     ->get();
 
         $kandang = Kandang::where('status', '=', 'aktif')->get();
@@ -159,28 +159,28 @@ class RecordingController extends Controller
         $id_kandang = $request->id_kandang;
          if($request->id_kandang)
          {
-             $result = Recording::join('kandang', 'kandang.id', '=', 'data_recording.id_kandang')
-                       ->join('pakan', 'pakan.id', '=', 'data_recording.id_pakan')
-                       ->join('users', 'users.id', '=', 'data_recording.id_users')
-                       ->select('data_recording.*', 'kandang.kd_kandang', 'pakan.nama', 'pakan.jenis', 'users.name')
+             $result = Recording::join('kandang', 'kandang.id', '=', 'recording.id_kandang')
+                       ->join('pakan', 'pakan.id', '=', 'recording.id_pakan')
+                       ->join('users', 'users.id', '=', 'recording.id_users')
+                       ->select('recording.*', 'kandang.kd_kandang', 'pakan.nama', 'pakan.id_jenis_pakan', 'users.name')
                        ->where('id_kandang', 'LIKE', '%'.$id_kandang.'%')
                        ->get();
          }
          if( $request->fromDate && $request->toDate ){
-             $result = Recording::join('kandang', 'kandang.id', '=', 'data_recording.id_kandang')
-                       ->join('pakan', 'pakan.id', '=', 'data_recording.id_pakan')
-                       ->join('users', 'users.id', '=', 'data_recording.id_users')
-                       ->select('data_recording.*', 'kandang.kd_kandang', 'pakan.nama', 'pakan.jenis', 'users.name')
+             $result = Recording::join('kandang', 'kandang.id', '=', 'recording.id_kandang')
+                       ->join('pakan', 'pakan.id', '=', 'recording.id_pakan')
+                       ->join('users', 'users.id', '=', 'recording.id_users')
+                       ->select('recording.*', 'kandang.kd_kandang', 'pakan.nama', 'pakan.id_jenis_pakan', 'users.name')
                        ->where('tanggal', '>=', $request->fromDate)
                        ->where('tanggal', '<=', $request->toDate)
                        ->get();
          }
          if($request->id_kandang && $request->fromDate && $request->fromDate )
          {
-             $result = Recording::join('kandang', 'kandang.id', '=', 'data_recording.id_kandang')
-                       ->join('pakan', 'pakan.id', '=', 'data_recording.id_pakan')
-                       ->join('users', 'users.id', '=', 'data_recording.id_users')
-                       ->select('data_recording.*', 'kandang.kd_kandang', 'pakan.nama', 'pakan.jenis', 'users.name')
+             $result = Recording::join('kandang', 'kandang.id', '=', 'recording.id_kandang')
+                       ->join('pakan', 'pakan.id', '=', 'recording.id_pakan')
+                       ->join('users', 'users.id', '=', 'recording.id_users')
+                       ->select('recording.*', 'kandang.kd_kandang', 'pakan.nama', 'pakan.id_jenis_pakan', 'users.name')
                        ->where('id_kandang', 'LIKE', '%'.$id_kandang.'%')
                        ->where('tanggal', '>=', $request->fromDate)
                        ->where('tanggal', '<=', $request->toDate)
@@ -212,9 +212,9 @@ class RecordingController extends Controller
 
     public function cetak_recording(Request $request)
     {
-         $recording = Recording::join('kandang', 'kandang.id', '=', 'data_recording.id_kandang')
-                    ->join('pakan', 'pakan.id', '=', 'data_recording.id_pakan')
-                    ->select('data_recording.*', 'kandang.kd_kandang', 'pakan.nama', 'pakan.jenis')
+         $recording = Recording::join('kandang', 'kandang.id', '=', 'recording.id_kandang')
+                    ->join('pakan', 'pakan.id', '=', 'recording.id_pakan')
+                    ->select('recording.*', 'kandang.kd_kandang', 'pakan.nama', 'pakan.id_jenis_pakan')
                     ->get();
 
         $tgl_awal = $request->tgl_awal;
@@ -222,36 +222,36 @@ class RecordingController extends Controller
         $id_kandang = $request->id_kandang;
 
         if($id_kandang AND $tgl_awal AND $tgl_akhir){
-            $recording = Recording::join('kandang', 'kandang.id', '=', 'data_recording.id_kandang')
-                        ->join('pakan', 'pakan.id', '=', 'data_recording.id_pakan')
-                        ->select('data_recording.*', 'kandang.kd_kandang', 'pakan.nama', 'pakan.jenis')
+            $recording = Recording::join('kandang', 'kandang.id', '=', 'recording.id_kandang')
+                        ->join('pakan', 'pakan.id', '=', 'recording.id_pakan')
+                        ->select('recording.*', 'kandang.kd_kandang', 'pakan.nama', 'pakan.id_jenis_pakan')
                         ->where('id_kandang', 'LIKE', '%'.$id_kandang.'%')
-                        ->whereBetween('data_recording.tanggal', [$tgl_awal,$tgl_akhir])
+                        ->whereBetween('recording.tanggal', [$tgl_awal,$tgl_akhir])
                         ->get();
 
             $get_kandang    = Kandang::where('id', $id_kandang)->select('kd_kandang')->get();
             $get_populasi   = Populasi::where('id_kandang', $id_kandang)->count();
             $total_telur    = Recording::where('id_kandang', $id_kandang)->whereBetween('tanggal', [$tgl_awal, $tgl_akhir])
-                              ->sum('jml_telur');
+                              ->sum('tot_telur');
             $berat_telur    = Recording::where('id_kandang', $id_kandang)->whereBetween('tanggal', [$tgl_awal, $tgl_akhir])
                               ->sum('berat_telur');
             $total_pakan    = Recording::where('id_kandang', $id_kandang)->whereBetween('tanggal', [$tgl_awal, $tgl_akhir])
-                              ->sum('jml_pakan');
+                              ->sum('tot_pakan');
         }else{
-            $recording = Recording::join('kandang', 'kandang.id', '=', 'data_recording.id_kandang')
-                        ->join('pakan', 'pakan.id', '=', 'data_recording.id_pakan')
-                        ->select('data_recording.*', 'kandang.kd_kandang', 'pakan.nama', 'pakan.jenis')
+            $recording = Recording::join('kandang', 'kandang.id', '=', 'recording.id_kandang')
+                        ->join('pakan', 'pakan.id', '=', 'recording.id_pakan')
+                        ->select('recording.*', 'kandang.kd_kandang', 'pakan.nama', 'pakan.id_jenis_pakan')
                         ->where('id_kandang', 'LIKE', '%'.$id_kandang.'%')
                         ->get();
             
             $get_kandang    = Kandang::where('id', $id_kandang)->select('kd_kandang')->get();
             $get_populasi   = Populasi::where('id_kandang', $id_kandang)->count();
             $total_telur    = Recording::where('id_kandang', $id_kandang)
-                              ->sum('jml_telur');
+                              ->sum('tot_telur');
             $berat_telur    = Recording::where('id_kandang', $id_kandang)
                               ->sum('berat_telur');
             $total_pakan    = Recording::where('id_kandang', $id_kandang)
-                              ->sum('jml_pakan');
+                              ->sum('tot_pakan');
             
         }
         return view('menu.recording.cetak_recording', compact('recording', 'tgl_awal', 'tgl_akhir', 'id_kandang', 'get_kandang', 'get_populasi', 'total_telur', 'berat_telur', 'total_pakan'));

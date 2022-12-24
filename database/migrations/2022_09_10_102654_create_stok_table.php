@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreatePakanMasukTable extends Migration
+class CreateStokTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,10 +13,10 @@ class CreatePakanMasukTable extends Migration
      */
     public function up()
     {
-        Schema::create('pakan_masuk', function (Blueprint $table) {
+        Schema::create('stok', function (Blueprint $table) {
             $table->id();
             $table->foreignId('id_pakan');
-            $table->decimal('jml_pakan');
+            $table->decimal('jml_pakan', 8,2);
             $table->date('tgl_masuk');
             $table->timestamps();
 
@@ -31,6 +31,6 @@ class CreatePakanMasukTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('pakan_masuk');
+        Schema::dropIfExists('stok');
     }
 }

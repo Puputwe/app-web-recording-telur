@@ -13,8 +13,8 @@ class PakanMasukController extends Controller
 {
     public function index()
     {
-        $pakan_in = PakanMasuk::join('pakan', 'pakan.id', '=', 'pakan_masuk.id_pakan')
-                    ->select('pakan_masuk.*', 'pakan.nama', 'pakan.perusahaan')
+        $pakan_in = PakanMasuk::join('pakan', 'pakan.id', '=', 'stok.id_pakan')
+                    ->select('stok.*', 'pakan.nama', 'pakan.perusahaan')
                     ->get();
 
         return view('menu.stok.index', compact('pakan_in'));
@@ -64,8 +64,8 @@ class PakanMasukController extends Controller
 
     public function trash()
     {
-    	$stok_trash = PakanMasuk::join('pakan', 'pakan.id', '=', 'pakan_masuk.id_pakan')
-                      ->select('pakan_masuk.*', 'pakan.nama', 'pakan.perusahaan')
+    	$stok_trash = PakanMasuk::join('pakan', 'pakan.id', '=', 'stok.id_pakan')
+                      ->select('stok.*', 'pakan.nama', 'pakan.perusahaan')
                       ->onlyTrashed()
                       ->get();
     	return view('menu.stok.trash', compact('stok_trash'));

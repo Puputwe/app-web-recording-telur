@@ -12,10 +12,10 @@
                 <div class="card-header">
                     <h3 class="card-title">
                       @if(auth()->user()->role_id == 2)
-                      <a href="https://puputwe.github.io/scan-kode-ayam.github.io/" class="btn btn-primary btn-sm" style="float: left;">
+                      <a href="{{ route('qrScanner') }}" class="btn btn-primary btn-sm" style="float: left;">
                         <i class="fa fa-qrcode"></i> Ayam
                       </a>
-                      <a href="https://puputwe.github.io/scan-kode-kandang.github.io/" class="btn btn-danger btn-sm" style="float: left; margin-left: 4px;">
+                      <a href="{{ route('QR_Scanner') }}" class="btn btn-danger btn-sm" style="float: left; margin-left: 4px;">
                         <i class="fa fa-qrcode"></i> Kandang
                       </a>
                       @else
@@ -105,7 +105,6 @@
                         <div class="modal-body">
                             <form action="/produksi/store" method="POST">
                                 @csrf
-                                <input type="hidden" name="id_users" value="{{Auth::user()->id}}" class="form-control">
                                 <div class="form-group">
                                     <label class="font-weight-bold text-small">Tanggal Produksi<span class="text-olive ml-1">*</span></label>
                                     <input type="date" name="tgl_produksi" class="form-control" id="tgl_produksi" required>

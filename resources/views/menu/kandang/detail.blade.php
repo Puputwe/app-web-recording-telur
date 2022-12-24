@@ -88,7 +88,7 @@
                  </div>
                 <div class="card-body">
                 <div class="table-responsive">
-                <table id="populasi-datatable" class="table table-bordered" style="width:100%">
+                <table id="populasi-datatable" class="table table-bordered table-sm" style="width:100%">
                     <thead>
                         <tr class="table-secondary">
                             <th>No</th>
@@ -108,11 +108,11 @@
                             <td>{{\Carbon\Carbon::parse($data->tgl_tetas)->diffInDays()}} Hari</td>
                             <td class="text text-center">{!! QrCode::size(50)->generate(Crypt::encrypt($data->id)); !!}</td>
                             <td class="text text-center">
-                              @if ($data->status == 'produktif')
+                              @if ($data->status_aym == 'produktif')
                               <span class="badge bg-success" >produktif</span>
-                              @elseif ($data->status == 'afkir')
+                              @elseif ($data->status_aym == 'afkir')
                                   <span class="badge bg-danger">afkir</span>
-                              @elseif ($data->status == 'mati')
+                              @elseif ($data->status_aym == 'mati')
                                   <span class="badge bg-secondary">mati</span>                                     
                               @endif  
                             </td>
@@ -160,11 +160,11 @@
                               </div>
                               <div class="form-group">
                                   <label>Status</label>
-                                      <select name="status" class="form-control" id="status" required>
+                                      <select name="status_aym" class="form-control" id="status_aym" required>
                                           <option value="">-- Pilih Status --</option>
-                                          <option value="produktif" {{ old('status') == 'produktif' ? 'selected' : '' }}>Produktif</option>
-                                          <option value="afkir" {{ old('status') == 'afkir' ? 'selected' : '' }}>Afkir</option>
-                                          <option value="mati" {{ old('status') == 'mati' ? 'selected' : '' }}>Mati</option>
+                                          <option value="produktif" {{ old('status_aym') == 'produktif' ? 'selected' : '' }}>Produktif</option>
+                                          <option value="afkir" {{ old('status_aym') == 'afkir' ? 'selected' : '' }}>Afkir</option>
+                                          <option value="mati" {{ old('status_aym') == 'mati' ? 'selected' : '' }}>Mati</option>
                                       </select>
                                   </select>
                               </div>
@@ -203,11 +203,11 @@
                               </div>
                               <div class="form-group">
                                   <label>Status</label>
-                                  <select name="status" class="form-control" id="status" required>
+                                  <select name="status_aym" class="form-control" id="status_aym" required>
                                       <option value="">-- Pilih Status --</option>
-                                      <option {{ ($edit->status) == 'produktif' ? 'selected' : '' }}  value="produktif">Produktif</option>
-                                      <option {{ ($edit->status) == 'afkir' ? 'selected' : '' }}  value="afkir">Afkir</option>
-                                      <option {{ ($edit->status) == 'mati' ? 'selected' : '' }}  value="mati">Mati</option>
+                                      <option {{ ($edit->status_aym) == 'produktif' ? 'selected' : '' }}  value="produktif">Produktif</option>
+                                      <option {{ ($edit->status_aym) == 'afkir' ? 'selected' : '' }}  value="afkir">Afkir</option>
+                                      <option {{ ($edit->status_aym) == 'mati' ? 'selected' : '' }}  value="mati">Mati</option>
                                   </select>
                               </div>
                               <div class="modal-footer">

@@ -35,11 +35,11 @@
                             <td>{{\Carbon\Carbon::parse($data->tgl_tetas)->diffInDays()}} Hari</td>
                             <td class="text text-center">{!! QrCode::size(50)->generate($data->kd_ayam); !!}</td>
                             <td class="text text-center">
-                              @if ($data->status == 'produktif')
+                              @if ($data->status_aym == 'produktif')
                               <span class="badge bg-success" >produktif</span>
-                              @elseif ($data->status == 'afkir')
+                              @elseif ($data->status_aym == 'afkir')
                                   <span class="badge bg-danger">afkir</span>
-                              @elseif ($data->status == 'mati')
+                              @elseif ($data->status_aym == 'mati')
                                   <span class="badge bg-secondary">mati</span>                                     
                               @endif  
                             </td>

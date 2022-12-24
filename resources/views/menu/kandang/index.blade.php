@@ -18,7 +18,7 @@
                  </div>
                 <div class="card-body">   
                 <div class="table-responsive">
-                <table id="kandang-datatable" class="table table-bordered" style="width:100%">
+                <table id="kandang-datatable" class="table table-bordered table-sm" style="width:100%">
                     <thead>
                         <tr class="table-secondary">
                             <th>No</th>

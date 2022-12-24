@@ -10,7 +10,6 @@ use App\Http\Controllers\Controller;
 use App\Models\Populasi;
 use App\Models\Kandang;
 use App\Models\Produksi;
-use App\Models\User;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Crypt;
 use Str;
@@ -25,13 +24,12 @@ class ProduksiController extends Controller
     {
         $produksi = Produksi::join('populasi', 'populasi.id', '=', 'produksi.id_populasi')
                     ->join('kandang', 'kandang.id', '=', 'produksi.id_kandang')
-                    ->join('users', 'users.id', '=', 'produksi.id_users')
-                    ->select('produksi.*', 'kandang.kd_kandang', 'populasi.kd_ayam', 'users.name')
+                    ->select('produksi.*', 'kandang.kd_kandang', 'populasi.kd_ayam')
                     ->get();
 
         $kandang = Kandang::where('status', '=', 'aktif')->get();
 
-        $populasi = Populasi::where('status', '=', 'produktif')->get();
+        $populasi = Populasi::where('status_aym', '=', 'produktif')->get();
 
         return view('menu.produksi.index', compact('produksi', 'populasi', 'kandang')); 
 
@@ -42,7 +40,6 @@ class ProduksiController extends Controller
         $date = date('Y-m-d');
         
         $produksi = new Produksi;
-        $produksi->id_users    = $request->input('id_users');
         $produksi->id_populasi = $request->input('id_populasi');
         $produksi->id_kandang  = $request->input('id_kandang');
         $produksi->jml_telur   = $request->input('jml_telur');
@@ -56,14 +53,12 @@ class ProduksiController extends Controller
     public function store_all(Request $request)
     {
 
-        $id_users    = $request->id_users;
         $id_populasi = $request->id_populasi;
         $id_kandang  = $request->id_kandang;
         $jml_telur   = $request->jml_telur;
 
         for ($i=0; $i < count($id_populasi); $i++) {
                 $data = [
-                   'id_users'  => $id_users[$i],
                    'id_populasi'  => $id_populasi[$i],
                    'id_kandang'   => $id_kandang[$i],
                    'jml_telur'    => $jml_telur[$i],
@@ -107,7 +102,7 @@ class ProduksiController extends Controller
         $enkripsi = Crypt::decrypt($id);
         
         $get_kandang    = Kandang::where('id', $enkripsi)->select('kd_kandang')->get();
-        $populasi = Populasi::where('id_kandang', $enkripsi)->where('status', '=', 'produktif')->get();
+        $populasi = Populasi::where('id_kandang', $enkripsi)->where('status_aym', '=', 'produktif')->get();
 
         $kandang = Kandang::where('id', $enkripsi)->first();
 
