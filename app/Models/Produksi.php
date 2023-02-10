@@ -19,8 +19,7 @@ class Produksi extends Model
     protected $fillable = [ 'id_populasi',
                             'id_kandang',
                             'tgl_produksi', 
-                            'jml_telur', 
-                            'keterangan'];
+                            'jml_telur'];
 
     public function populasi(){
         return $this->belongsTo(Populasi::class);

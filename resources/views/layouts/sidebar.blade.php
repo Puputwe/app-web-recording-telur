@@ -3,7 +3,7 @@
   <!-- Brand Logo -->
   <a href="/" class="brand-link navbar-olive">
     <img src="{{ asset('assets/dist/img/LogoKWT.png') }}" alt="KWT Logo" class="brand-image bg-white img-circle elevation-1" style="opacity: .9">
-    <span class="brand-text text-white font-weight-bold h7">Recording Ayam</span>
+    <span class="brand-text text-white font-weight-bold h7">Recording Telur</span>
   </a>
 
   <!-- Sidebar -->
@@ -174,17 +174,17 @@
           </a>
         </li>
         <li class="nav-header">Main</li>
-        <li class="nav-item">
-          <a href="{{ route('produksi') }}" class="nav-link">
-            <i class="nav-icon fas fa-mobile"></i>
-            <p>Produksi</p>
-          </a>
-        </li>
         
         <li class="nav-item">
-          <a href="{{ route('recording') }}" class="nav-link">
-            <i class="nav-icon fas fa-file"></i>
-            <p>Recording</p>
+          <a href="{{ route('QR_Scanner') }}" class="nav-link">
+            <i class="nav-icon fas fa-qrcode"></i>
+            <p>Recording Telur</p>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a href="{{ route('qrScanner') }}" class="nav-link">
+            <i class="nav-icon fas fa-qrcode"></i>
+            <p>Informasi Ayam</p>
           </a>
         </li>
         <li class="nav-item">
@@ -194,10 +194,27 @@
           </a>
         </li>
         <li class="nav-item">
-          <a href="{{ route('grafik') }}" class="nav-link">
+          <a href="#" class="nav-link">
             <i class="nav-icon fas fa-chart-line"></i>
-            <p>Grafik</p>
+            <p>
+              Laporan
+              <i class="fas fa-angle-left right"></i>
+            </p>
           </a>
+          <ul class="nav nav-treeview">
+            <li class="nav-item">
+              <a href="{{ route('recording') }}" class="nav-link">
+                <i class="far nav-icon"></i>
+                <p>Laporan</p>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a href="{{ route('grafik') }}" class="nav-link">
+                <i class="far nav-icon"></i>
+                <p>Grafik</p>
+              </a>
+            </li>
+          </ul>
         </li>
         </li>
     </nav>

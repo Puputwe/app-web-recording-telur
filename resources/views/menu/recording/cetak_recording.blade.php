@@ -79,16 +79,13 @@
                         <tr>
                             <th rowspan="2">Kandang</th>
                             <th rowspan="2">Tanggal</th>
-                            <th class="text-center" colspan="3">Populasi</th>
+                            <th rowspan="2">Jumlah Ayam</th>
                             <th class="text-center" colspan="2">Pakan</th>
                             <th class="text-center" colspan="2">Produksi Telur</th>
                             <th rowspan="2">HD (%)</th>
                             <th rowspan="2">FCR</th>
                         </tr>
                         <tr>
-                            <th>Hidup</th>
-                            <th>Afkir</th>
-                            <th>Mati</th>
                             <th>Nama</th>
                             <th>Total</th>
                             <th>Jumlah</th>
@@ -100,9 +97,7 @@
                         <tr>
                             <td>{{$item->kd_kandang}}</td>
                             <td>{{date('d-m-Y', strtotime($item->tanggal))}}</td>
-                            <td>{{$item->ayam_hidup}}</td>
-                            <td>{{$item->ayam_afkir}}</td>
-                            <td>{{$item->ayam_mati}}</td>
+                            <td>{{$item->jml_aym}}</td>
                             <td>{{$item->nama}}</td>
                             <td>{{number_format($item->tot_pakan)}} Kg</td>
                             <td>{{$item->tot_telur}} Butir</td>

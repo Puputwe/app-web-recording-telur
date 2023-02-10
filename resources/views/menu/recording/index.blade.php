@@ -99,16 +99,13 @@
                       <tr class="table-secondary">
                           <th rowspan="2">Kandang</th>
                           <th rowspan="2">Tanggal</th>
-                          <th class="text-center" colspan="3">Populasi</th>
+                          <th rowspan="2">Jumlah Ayam</th>
                           <th class="text-center" colspan="2">Pakan</th>
                           <th class="text-center" colspan="2">Produksi Telur</th>
                           <th rowspan="2">HD (%)</th>
                           <th rowspan="2">FCR</th>
                       </tr>
                       <tr class="table-secondary">
-                          <th>Hidup</th>
-                          <th>Afkir</th>
-                          <th>Mati</th>
                           <th>Nama</th>
                           <th>Total</th>
                           <th>Jumlah</th>
@@ -120,9 +117,7 @@
                       <tr>
                           <td>{{$data->kd_kandang}}</td>
                           <td>{{date('d-m-Y', strtotime($data->tanggal))}}</td>
-                          <td>{{$data->ayam_hidup}}</td>
-                          <td>{{$data->ayam_afkir}}</td>
-                          <td>{{$data->ayam_mati}}</td>
+                          <td class="text-center">{{$data->jml_aym}}</td>
                           <td>{{$data->nama}}</td>
                           <td>{{number_format($data->tot_pakan)}} Kg</td>
                           <td>{{$data->tot_telur}} Butir</td>
@@ -163,9 +158,7 @@
                           <td>{{$data->name}}</td>
                           <td>{{$data->kd_kandang}}</td>
                           <td>{{date('d-m-Y', strtotime($data->tanggal))}}</td>
-                          <td>{{$data->ayam_hidup}}</td>
-                          <td>{{$data->ayam_afkir}}</td>
-                          <td>{{$data->ayam_mati}}</td>
+                          <td>{{$data->jml_aym}}</td>
                           <td>{{$data->nama}}</td>
                           <td>{{number_format($data->tot_pakan)}} Kg</td>
                           <td>{{$data->tot_telur}} Butir</td>

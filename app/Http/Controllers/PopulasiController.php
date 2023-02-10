@@ -9,6 +9,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Populasi;
 use App\Models\Kandang;
 use App\Models\Produksi;
+use Illuminate\Support\Facades\Crypt;
 use Str;
 use Validator;
 Use Alert;
@@ -45,7 +46,7 @@ class PopulasiController extends Controller
         $populasi->id_kandang    = $request->input('id_kandang');
         $populasi->kd_ayam       = $request->input('kd_ayam');
         $populasi->tgl_tetas     = $request->input('tgl_tetas');
-        $populasi->status_aym        = $request->input('status_aym');
+        $populasi->status_aym    = $request->input('status_aym');
         $populasi->save();
 
         return back()->with('toast_success', 'Data berhasil ditambahkan!');
@@ -65,7 +66,7 @@ class PopulasiController extends Controller
         $populasi->kd_ayam       = $request->input('kd_ayam');
         $populasi->id_kandang    = $request->input('id_kandang');
         $populasi->tgl_tetas     = $request->input('tgl_tetas');
-        $populasi->status_aym        = $request->input('status_aym');
+        $populasi->status_aym    = $request->input('status_aym');
         $populasi->update();
 
         return back()->with('toast_info', 'Data berhasil diupdate!');
@@ -121,5 +122,41 @@ class PopulasiController extends Controller
 
         Excel::import(new PopulasiImport, public_path('/DataPopulasi/'.$namaFile));
         return redirect()->back()->with('success', 'Data Populasi Berhasil Diimport!');
+    }
+    public function qrScannerAyam(){
+
+        $kandang = Kandang::where('status', '=', 'aktif')->get();
+
+        return view('menu.produksi.qrscanner', compact('kandang'));
+    }
+
+    public function form_ayam($id)
+    {
+        $enkripsi= Crypt::decrypt($id);
+        
+        $populasi = Populasi::where('id', $enkripsi)->first();
+
+        $total_telur = Produksi::where('id_populasi', $enkripsi)->sum('jml_telur');
+        if($populasi){
+            return view('menu.populasi.detail', compact('populasi', 'total_telur'));  
+          }else{
+            return back()->with('warning', 'Qr Code tidak terdaftar!');  
+          }
+    }
+
+    public function update_status(Request $request, $id)
+    {
+        $kandang = Kandang::all();
+
+        //$decript = Crypt::encrypt($id);
+        $populasi = Populasi::find($id);
+        $populasi->kd_ayam       = $request->input('kd_ayam');
+        $populasi->id_kandang    = $request->input('id_kandang');
+        $populasi->tgl_tetas     = $request->input('tgl_tetas');
+        $populasi->status_aym    = $request->input('status_aym');
+        $populasi->catatan       = $request->input('catatan');
+        $populasi->update();
+
+        return redirect('/scan/kode-ayam')->with('success', 'Data ayam berhasil diperbarui!');     
     }
 }

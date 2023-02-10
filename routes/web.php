@@ -32,6 +32,7 @@ Route::get('/logout', [LoginController::class, 'logout'])->name('logout');
 Route::middleware(['auth'])->group(function () {
    
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
+    Route::get('/dashboard/ajax', [DashboardController::class, 'ajax'])->name('ajax.dashboard');
     
     Route::get('/produksi', [ProduksiController::class, 'index'])->name('produksi');
 
@@ -53,17 +54,22 @@ Route::middleware(['auth'])->group(function () {
 Route::middleware(['auth', 'user'])->group(function () {
     
     //PRODUKSI
-    Route::get('/scan/kode-ayam', [ProduksiController::class, 'qrScannerAyam'])->name('qrScanner');
+    // Route::get('/scan/kode-ayam', [ProduksiController::class, 'qrScannerAyam'])->name('qrScanner');
     Route::get('/scan/kode-kandang', [ProduksiController::class, 'qrScannerKandang'])->name('QR_Scanner');
     Route::get('/form/{id}/kode-kandang', [ProduksiController::class, 'form_produksi'])->name('form-produksi');
-    Route::get('/form/{id}/kode-ayam', [ProduksiController::class, 'form_ayam'])->name('form-ayam');
+    // Route::get('/form/{id}/kode-ayam', [ProduksiController::class, 'form_ayam'])->name('form-ayam');
 
     Route::post('/produksi/store', [ProduksiController::class, 'store'])->name('store-produksi');
     Route::post('/produksi/store-all', [ProduksiController::class, 'store_all'])->name('store-all');
 
+    //POPULASI
+    Route::get('/scan/kode-ayam', [PopulasiController::class, 'qrScannerAyam'])->name('qrScanner');
+    Route::get('/form/{id}/kode-ayam', [PopulasiController::class, 'form_ayam'])->name('form-ayam');
+    Route::post('/populasi/{id}/update_status', [PopulasiController::class, 'update_status'])->name('update_status');
 
     //PERFORMA
     Route::get('/recording/ajax', [RecordingController::class, 'ajax'])->name('ajax.recording');
+    Route::get('/recording/ajaxx', [RecordingController::class, 'ajaxx'])->name('ajaxx.recording');
     Route::get('/recording/create', [RecordingController::class, 'create'])->name('create-recording');
     Route::post('/recording/store', [RecordingController::class, 'store'])->name('store-recording');
 

@@ -23,9 +23,7 @@ class Recording extends Model
                             'tot_telur',
                             'berat_telur',
                             'tot_pakan',
-                            'ayam_hidup',
-                            'ayam_afkir',
-                            'ayam_mati',
+                            'jml_aym',
                             'hd',
                             'fcr'];
 

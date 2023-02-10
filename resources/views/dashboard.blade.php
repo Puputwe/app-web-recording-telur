@@ -7,6 +7,27 @@
 @section('content')
     <div class="container-fluid">
       <div class="row">
+        <div class="card-body">
+          <form action="/dashboard" method="GET" enctype="multipart/form-data">
+            @csrf
+            <div class="row filter-row">
+                <div class="form-group col-lg-6">
+                  <select name="id_kandang" class="form-control" id="id_kandang" required>
+                      <option value=""> Pilih Kandang </option>
+                      @foreach ($kandang as $a)
+                          <option  value="{{ $a->id }}">{{ $a->kd_kandang }}
+                          </option>
+                      @endforeach
+                  </select>
+              </div>
+        </div>
+          </form>
+      </div>
+       </div>
+
+<div id="detail_kandang" class="detail_kandang"></div>
+
+      {{-- <div class="row">
         <div class="col-md-3 col-sm-6 col-12">
           <div class="info-box">
             <span class="info-box-icon bg-info"><i class="fas fa-kiwi-bird"></i></span>
@@ -51,7 +72,7 @@
           <div class="row">
               <div class="col-md-6">
                   <div class="card">
-                      <div class="card-header">Grafik Produksi Telur</div>
+                      <div class="card-header">Grafik Populasi Ayam</div>
                       <div class="card-body">
                         <div class="chart-container"></div>
                         <canvas id="grafik_populasi"></canvas>
@@ -68,26 +89,49 @@
                   </div>
               </div>
           </div>
-        </div>
+        </div> --}}
+        </div class="row">
         <div class="container-fluid">
           <div class="row">
               <div class="col-12">
                   <div class="card">
-                      <div class="card-header">Grafik Telur</div>
+                      <div class="card-header">Grafik Produksi Telur</div>
                       <div class="card-body">                   
                           <div id="grafik_telur"></div>
                       </div>
                   </div>
               </div>
           </div>
-      </div>
+        </div>
       </section>
     </div>
-  </div>         
+  </div> 
 @endsection
 
 
 @section('footer')
+
+{{-- <script>
+  window.onload = window.onload = function () {
+  document.getElementById('id_kandang').click();
+}
+</script> --}}
+
+<script>
+  $("#id_kandang").change(function() {
+      var id_kandang = $("#id_kandang").val();
+      $.ajax({
+          type: "GET",
+          url: "/dashboard/ajax",
+          data: "id_kandang=" + id_kandang,
+          cache: false,
+          success: function(data) {
+              $('#detail_kandang').html(data);
+          }
+      });
+  })
+</script>
+
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <script src="https://code.highcharts.com/highcharts.js"></script>
 <script src="highcharts/modules/exporting.js"></script>

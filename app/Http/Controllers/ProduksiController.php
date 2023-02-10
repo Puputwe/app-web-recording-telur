@@ -43,7 +43,6 @@ class ProduksiController extends Controller
         $produksi->id_populasi = $request->input('id_populasi');
         $produksi->id_kandang  = $request->input('id_kandang');
         $produksi->jml_telur   = $request->input('jml_telur');
-        $produksi->keterangan  = $request->input('keterangan');
         $produksi->tgl_produksi = $date;
         $produksi->save();
 
@@ -66,7 +65,7 @@ class ProduksiController extends Controller
                 DB::table('produksi')->insert($data);
         }
        
-        return redirect('/produksi')->with('toast_success', 'Data berhasil ditambahkan!');      
+        return redirect('/recording/create')->with('toast_success', 'Data berhasil ditambahkan!');      
     }
 
     public function qrScannerAyam(){

@@ -53,10 +53,11 @@ class RecordingController extends Controller
     public function store(Request $request)
     {
         $pakan = Pakan::find($request->id_pakan);
+        $date = date('Y-m-d');
         
-        if($pakan->stok < $request->jml_pakan)
+        if($pakan->stok < $request->tot_pakan)
         {
-            return redirect('/recording/create')->with('error', 'Jumlah Pakan Melebihi Stok!');
+            return back()->with('warning', 'Jumlah Pakan Melebihi Stok!');
         }
         else
         {
@@ -64,13 +65,11 @@ class RecordingController extends Controller
         $recording->id_users    = $request->input('id_users');
         $recording->id_kandang  = $request->input('id_kandang');
         $recording->id_pakan    = $request->input('id_pakan');
-        $recording->tanggal     = $request->input('tanggal');
+        $recording->tanggal     = $date;
         $recording->tot_telur   = $request->input('tot_telur');
         $recording->berat_telur = $request->input('berat_telur');
         $recording->tot_pakan   = $request->input('tot_pakan');
-        $recording->ayam_hidup  = $request->input('ayam_hidup');
-        $recording->ayam_afkir  = $request->input('ayam_afkir');
-        $recording->ayam_mati   = $request->input('ayam_mati');
+        $recording->jml_aym     = $request->input('jml_aym');
         $recording->hd          = $request->input('hd');
         $recording->fcr         = $request->input('fcr');
         $recording->save();
@@ -142,6 +141,20 @@ class RecordingController extends Controller
         $ajax_pakan           = Pakan::where('id', $id_pakan)->get();
 
         return view('menu.recording.ajax', compact('ajax_kandang', 'ajax_pakan'));
+    }
+
+    public function ajaxx(Request $request)
+    {
+
+        $id_kandang['id_kandang'] = $request->id_kandang;
+        $ajax_kandang             = Populasi::where('id_kandang', $id_kandang)->where('status_aym', '=', 'produktif')->get()->count();
+      
+        $date = date('Y-m-d');
+        $telur_today = Produksi::where('id_kandang', $id_kandang)->where('tgl_produksi', '=', $date)->sum('jml_telur');
+
+        $hd = ($ajax_kandang / $telur_today) * 100;
+
+        return view('menu.recording.ajaxx', compact('ajax_kandang', 'telur_today', 'hd'));
     }
 
     public function searchRecording(Request $request)

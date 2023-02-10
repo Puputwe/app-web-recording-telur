@@ -12,9 +12,9 @@
                 <div class="card-header">
                     <h3 class="card-title">
                       @if(auth()->user()->role_id == 2)
-                      <a href="{{ route('qrScanner') }}" class="btn btn-primary btn-sm" style="float: left;">
+                      {{-- <a href="{{ route('qrScanner') }}" class="btn btn-primary btn-sm" style="float: left;">
                         <i class="fa fa-qrcode"></i> Ayam
-                      </a>
+                      </a> --}}
                       <a href="{{ route('QR_Scanner') }}" class="btn btn-danger btn-sm" style="float: left; margin-left: 4px;">
                         <i class="fa fa-qrcode"></i> Kandang
                       </a>

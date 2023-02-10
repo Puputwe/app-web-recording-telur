@@ -36,7 +36,7 @@
     <div class="card-header text-center">
       <img src="{{ asset('assets/dist/img/LogoKWT.png') }}" class="mx-auto d-block" width="100px" height="100px"/>
       <a href="{{ asset('#') }}" class="h3 text-olive"><b>KWT KEMBANG WONO</b></a>
-      <p class="h6 text-olive"><i>Recording Ayam Arab</i></p>
+      <p class="h6 text-olive"><i>Recording Telur Ayam Arab</i></p>
     </div>
     <div class="card-body">
       <p class="login-box-msg">Masuk Menggunakan Akun Anda</p>

@@ -98,6 +98,8 @@
 
 @section('footer')
     <script src="https://code.highcharts.com/highcharts.js"></script>
+    <script src="numeral.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/numeral.js/2.0.6/numeral.min.js"></script>
     <script type="text/javascript">
         var nilaihd = <?php echo json_encode($standart_hd) ?>;
         var bulan = <?php echo json_encode($bulan) ?>;
@@ -147,6 +149,9 @@
             allowPointSelect: true
             }
         },
+        // tooltip: {
+		// 		pointFormat: "<b>{point.y:.2f}</b>"
+		// 	},
         series: [
             {
             name: 'Nilai FCR',
